@@ -1,0 +1,1638 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【练习】栈的经典习题, Maelsee Blog">
+    <meta name="description" content="【练习】栈的经典习题考察先进后出性质对于栈这种数据结构的考察，主要考察先进后出特点的运用，比如表达式运算、括号合法性检测等问题，下面列出几个使用栈的经典场景。
+71. 简化路径71. 简化路径&amp;nbsp;|&amp;nbsp;力扣&amp;nbsp;|&amp;n">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【练习】栈的经典习题 | Maelsee Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Maelsee Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags/hexo/" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories/Algorithm/" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Maelsee Blog</div>
+        <div class="logo-desc">
+            
+            学习记录
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags/hexo/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories/Algorithm/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【练习】栈的经典习题</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%AE%9E%E8%B7%B5/">
+                                <span class="chip bg-color">实践</span>
+                            </a>
+                        
+                            <a href="/tags/LeetCode/">
+                                <span class="chip bg-color">LeetCode</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/" class="post-category">
+                                经典队列/栈算法
+                            </a>
+                        
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/Algorithm/" class="post-category">
+                                算法
+                            </a>
+                        
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/Algorithm/Data-Structure/" class="post-category">
+                                数据结构
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-06-14
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.8k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="【练习】栈的经典习题"><a href="#【练习】栈的经典习题" class="headerlink" title="【练习】栈的经典习题"></a>【练习】栈的经典习题</h1><h2 id="考察先进后出性质"><a href="#考察先进后出性质" class="headerlink" title="考察先进后出性质"></a>考察先进后出性质</h2><p>对于栈这种数据结构的考察，主要考察先进后出特点的运用，比如表达式运算、括号合法性检测等问题，下面列出几个使用栈的经典场景。</p>
+<h2 id="71-简化路径"><a href="#71-简化路径" class="headerlink" title="71. 简化路径"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#slug_simplify-path">71. 简化路径</a></h2><details class="hint-container details" open="" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1.25rem 1rem; border-radius: 0.5rem; color: rgb(60, 60, 67); font-family: Inter, ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><summary style="position: relative; margin: -1rem -1rem 0.5em; padding-block: 1em; padding-inline: 3em 1.5em; list-style: none; font-size: 16px; cursor: pointer;"><strong style="font-weight: 600;">71. 简化路径</strong>&nbsp;|<span>&nbsp;</span><span><a href="https://leetcode.cn/problems/simplify-path/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣</a><span>&nbsp;</span>|<span>&nbsp;</span></span><span><a href="https://leetcode.com/problems/simplify-path/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">LeetCode</a><span>&nbsp;</span>|</span><span>&nbsp;</span>&nbsp;🟠</summary><div><p style="line-height: 1.6; overflow-wrap: break-word;">给你一个字符串<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">path</code><span>&nbsp;</span>，表示指向某一文件或目录的 Unix 风格<span>&nbsp;</span><strong style="font-weight: 600;">绝对路径<span>&nbsp;</span></strong>（以<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'/'</code><span>&nbsp;</span>开头），请你将其转化为更加简洁的规范路径。</p><p class="MachineTrans-lang-zh-CN" style="line-height: 1.6; overflow-wrap: break-word;">在 Unix 风格的文件系统中，一个点（<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">.</code>）表示当前目录本身；此外，两个点 （<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">..</code>） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。任意多个连续的斜杠（即，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'//'</code>）都被视为单个斜杠<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'/'</code><span>&nbsp;</span>。 对于此问题，任何其他格式的点（例如，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'...'</code>）均被视为文件/目录名称。</p><p style="line-height: 1.6; overflow-wrap: break-word;">请注意，返回的<span>&nbsp;</span><strong style="font-weight: 600;">规范路径</strong><span>&nbsp;</span>必须遵循下述格式：</p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>始终以斜杠<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'/'</code><span>&nbsp;</span>开头。</li><li>两个目录名之间必须只有一个斜杠<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'/'</code><span>&nbsp;</span>。</li><li>最后一个目录名（如果存在）<strong style="font-weight: 600;">不能<span>&nbsp;</span></strong>以<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'/'</code><span>&nbsp;</span>结尾。</li><li>此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'.'</code><span>&nbsp;</span>或<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'..'</code>）。</li></ul><p style="line-height: 1.6; overflow-wrap: break-word;">返回简化后得到的<span>&nbsp;</span><strong style="font-weight: 600;">规范路径</strong><span>&nbsp;</span>。</p><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 1：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>path = "/home/"
+<strong style="font-weight: 600;">输出：</strong>"/home"
+<strong style="font-weight: 600;">解释：</strong>注意，最后一个目录名后面没有斜杠。 </pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 2：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>path = "/../"
+<strong style="font-weight: 600;">输出：</strong>"/"
+<strong style="font-weight: 600;">解释：</strong>从根目录向上一级是不可行的，因为根目录是你可以到达的最高级。
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 3：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>path = "/home//foo/"
+<strong style="font-weight: 600;">输出：</strong>"/home/foo"
+<strong style="font-weight: 600;">解释：</strong>在规范路径中，多个连续斜杠需要用一个斜杠替换。
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 4：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>path = "/a/./b/../../c/"
+<strong style="font-weight: 600;">输出：</strong>"/c"
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">1 &lt;= path.length &lt;= 3000</code></li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">path</code><span>&nbsp;</span>由英文字母，数字，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'.'</code>，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'/'</code><span>&nbsp;</span>或<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'_'</code><span>&nbsp;</span>组成。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">path</code><span>&nbsp;</span>是一个有效的 Unix 风格绝对路径。</li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/simplify-path/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 71. 简化路径</a>。</strong></details>
+
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF">基本思路</a></h3><p>这题比较简单，利用栈先进后出的特性处理上级目录 <code>..</code>，最后组装化简后的路径即可。</p>
+<p><strong>详细题解</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/">【练习】栈的经典习题</a></li>
+</ul>
+<h3 id="解法代码"><a href="#解法代码" class="headerlink" title="解法代码"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E8%A7%A3%E6%B3%95%E4%BB%A3%E7%A0%81">解法代码</a></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">simplifyPath</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> path<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+        parts <span class="token operator">=</span> path<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span>
+        stk <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token comment"># 借助栈计算最终的文件夹路径</span>
+        <span class="token keyword">for</span> part <span class="token keyword">in</span> parts<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> part <span class="token operator">==</span> <span class="token string">""</span> <span class="token keyword">or</span> part <span class="token operator">==</span> <span class="token string">"."</span><span class="token punctuation">:</span>
+                <span class="token keyword">continue</span>
+            <span class="token keyword">if</span> part <span class="token operator">==</span> <span class="token string">".."</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> stk<span class="token punctuation">:</span>
+                    stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">continue</span>
+            stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>part<span class="token punctuation">)</span>
+        <span class="token comment"># 栈中存储的文件夹组成路径</span>
+        res <span class="token operator">=</span> <span class="token string">""</span>
+        <span class="token keyword">while</span> stk<span class="token punctuation">:</span>
+            res <span class="token operator">=</span> <span class="token string">"/"</span> <span class="token operator">+</span> stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> res
+        <span class="token keyword">return</span> res <span class="token keyword">if</span> res <span class="token keyword">else</span> <span class="token string">"/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%8F%AF%E8%A7%86%E5%8C%96">可视化</a></h3><details data-v-ee1a9bd0="" id="div_simplify-path" class="hint-container details" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1rem 0px 0px; border-radius: 0.5rem; margin: 1.3em 0px;"><summary data-v-ee1a9bd0="" style="position: relative; margin: -1rem 0px 0px; padding-block: 1em; padding-inline: 2.3em 1.5em; list-style: none; font-size: large; cursor: pointer; display: flex; align-items: center;"><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path data-v-ee1a9bd0="" fill="currentColor" d="m4.415 18.167l7.17-7.17l1.414 1.414l-7.17 7.17z" opacity="0.3"></path><path data-v-ee1a9bd0="" fill="currentColor" d="m20 7l.94-2.06L23 4l-2.06-.94L20 1l-.94 2.06L17 4l2.06.94zM8.5 7l.94-2.06L11.5 4l-2.06-.94L8.5 1l-.94 2.06L5.5 4l2.06.94zM20 12.5l-.94 2.06l-2.06.94l2.06.94l.94 2.06l.94-2.06L23 15.5l-2.06-.94zm-2.29-3.38l-2.83-2.83c-.2-.19-.45-.29-.71-.29s-.51.1-.71.29L2.29 17.46a.996.996 0 0 0 0 1.41l2.83 2.83c.2.2.45.3.71.3s.51-.1.71-.29l11.17-11.17c.39-.39.39-1.03 0-1.42M5.83 19.59l-1.41-1.41L11.59 11L13 12.41zM14.41 11L13 9.59l1.17-1.17l1.41 1.41z"></path></svg>&nbsp;<strong data-v-ee1a9bd0="" style="font-weight: 600;">算法可视化面板</strong><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="0.9em" height="0.9em" viewBox="0 0 24 24" style="margin-left: auto; margin-right: 10px;"><path data-v-ee1a9bd0="" fill="currentColor" d="M20 20v1h1v-1zm-4.293-5.707a1 1 0 0 0-1.414 1.414zM19 14v6h2v-6zm1 5h-6v2h6zm.707.293l-5-5l-1.414 1.414l5 5zM4 20H3v1h1zm5.707-4.293a1 1 0 0 0-1.414-1.414zM3 14v6h2v-6zm1 7h6v-2H4zm.707-.293l5-5l-1.414-1.414l-5 5zM20 4h1V3h-1zm-5.707 4.293a1 1 0 0 0 1.414 1.414zM21 10V4h-2v6zm-1-7h-6v2h6zm-.707.293l-5 5l1.414 1.414l5-5zM4 4V3H3v1zm4.293 5.707a1 1 0 0 0 1.414-1.414zM5 10V4H3v6zM4 5h6V3H4zm-.707-.293l5 5l1.414-1.414l-5-5z"></path></svg><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style="margin-right: 10px;"><path data-v-ee1a9bd0="" fill="currentColor" d="M17.65 6.35a7.95 7.95 0 0 0-6.48-2.31c-3.67.37-6.69 3.35-7.1 7.02C3.52 15.91 7.27 20 12 20a7.98 7.98 0 0 0 7.21-4.56c.32-.67-.16-1.44-.9-1.44c-.37 0-.72.2-.88.53a5.994 5.994 0 0 1-6.8 3.31c-2.22-.49-4.01-2.3-4.48-4.52A6.002 6.002 0 0 1 12 6c1.66 0 3.14.69 4.22 1.78l-1.51 1.51c-.63.63-.19 1.71.7 1.71H19c.55 0 1-.45 1-1V6.41c0-.89-1.08-1.34-1.71-.71z"></path></svg><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path data-v-ee1a9bd0="" fill="currentColor" d="M17 7h-4v2h4c1.65 0 3 1.35 3 3s-1.35 3-3 3h-4v2h4c2.76 0 5-2.24 5-5s-2.24-5-5-5m-6 8H7c-1.65 0-3-1.35-3-3s1.35-3 3-3h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4zm-3-4h8v2H8z"></path></svg></summary><div data-v-ee1a9bd0="" class="resizable" style="width: 780px; max-width: 100%; height: 70vh; min-height: 500px; overflow: hidden; resize: both;"><iframe data-v-ee1a9bd0="" title="algo-visualize panel" allow="clipboard-write; fullscreen;" id="iframe_simplify-path" src="https://labuladong.online/algo-visualize/leetcode/simplify-path/" width="100%" height="100%" loading="lazy" scrolling="auto" frameborder="0" style="overflow: auto;"></iframe></div></details>
+
+<h2 id="143-重排链表"><a href="#143-重排链表" class="headerlink" title="143. 重排链表"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#slug_reorder-list">143. 重排链表</a></h2><details class="hint-container details" open="" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1.25rem 1rem; border-radius: 0.5rem; color: rgb(60, 60, 67); font-family: Inter, ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><summary style="position: relative; margin: -1rem -1rem 0.5em; padding-block: 1em; padding-inline: 3em 1.5em; list-style: none; font-size: 16px; cursor: pointer;"><strong style="font-weight: 600;">143. 重排链表</strong>&nbsp;|<span>&nbsp;</span><span><a href="https://leetcode.cn/problems/reorder-list/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣</a><span>&nbsp;</span>|<span>&nbsp;</span></span><span><a href="https://leetcode.com/problems/reorder-list/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">LeetCode</a><span>&nbsp;</span>|</span><span>&nbsp;</span>&nbsp;🟠</summary><div><p style="line-height: 1.6; overflow-wrap: break-word;">给定一个单链表<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">L</code><em><span>&nbsp;</span></em>的头节点<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">head</code><span>&nbsp;</span>，单链表<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">L</code><span>&nbsp;</span>表示为：</p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;">L<sub>0</sub> → L<sub>1</sub> → … → L<sub>n - 1</sub> → L<sub>n</sub>
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;">请将其重新排列后变为：</p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;">L<sub>0</sub> → L<sub>n</sub> → L<sub>1</sub> → L<sub>n - 1</sub> → L<sub>2</sub> → L<sub>n - 2</sub> → …</pre><p style="line-height: 1.6; overflow-wrap: break-word;">不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 1：</strong></p><p style="line-height: 1.6; overflow-wrap: break-word;"><img alt="" src="https://labuladong.online/algo/images/lc/1626420311-PkUiGI-image.png" style="max-width: 100%; width: 240px;"></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>head = [1,2,3,4]
+<strong style="font-weight: 600;">输出：</strong>[1,4,2,3]</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 2：</strong></p><p style="line-height: 1.6; overflow-wrap: break-word;"><img alt="" src="https://labuladong.online/algo/images/lc/1626420320-YUiulT-image.png" style="max-width: 100%; width: 320px;"></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>head = [1,2,3,4,5]
+<strong style="font-weight: 600;">输出：</strong>[1,5,2,4,3]</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>链表的长度范围为<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">[1, 5 * 10<sup>4</sup>]</code></li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">1 &lt;= node.val &lt;= 1000</code></li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/reorder-list/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 143. 重排链表</a>。</strong></details>
+
+<h3 id="基本思路-1"><a href="#基本思路-1" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-1">基本思路</a></h3><p>这题的难点在于：一个单链表只能从头部向尾部遍历节点，无法从尾部开始向头部遍历节点。</p>
+<p>那么我们可以利用「栈」先进后出的结构特点，按从头到尾的顺序让链表节点入栈，那么出栈顺序就是反过来从尾到头了。</p>
+<p>有了这个栈，算法的大致逻辑如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">ListNode p <span class="token operator">=</span> head<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token operator">//</span> 链表尾部的节点
+    ListNode lastNode <span class="token operator">=</span> stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">//</span> 按题目要求拼接
+    ListNode <span class="token builtin">next</span> <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span><span class="token punctuation">;</span>
+    p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> lastNode<span class="token punctuation">;</span>
+    lastNode<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token builtin">next</span><span class="token punctuation">;</span>
+    p <span class="token operator">=</span> <span class="token builtin">next</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>当然，处理单链表时细节问题比较多，注意操作指针时的顺序，避免操作失误形成环形链表，直接看我的代码注释吧。</p>
+<p><strong>详细题解</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/">【练习】栈的经典习题</a></li>
+</ul>
+<h3 id="解法代码-1"><a href="#解法代码-1" class="headerlink" title="解法代码"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E8%A7%A3%E6%B3%95%E4%BB%A3%E7%A0%81-1">解法代码</a></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">reorderList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        stk <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token comment"># 先把所有节点装进栈里，得到倒序结果</span>
+        p <span class="token operator">=</span> head
+        <span class="token keyword">while</span> p <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">)</span>
+            p <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span>
+
+        p <span class="token operator">=</span> head
+        <span class="token keyword">while</span> p <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            <span class="token comment"># 链表尾部的节点</span>
+            lastNode <span class="token operator">=</span> stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token builtin">next</span> <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token builtin">next</span>
+            <span class="token keyword">if</span> lastNode <span class="token operator">==</span> <span class="token builtin">next</span> <span class="token keyword">or</span> lastNode<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">==</span> <span class="token builtin">next</span><span class="token punctuation">:</span>
+                <span class="token comment"># 结束条件，链表节点数为奇数或偶数时均适用</span>
+                lastNode<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token boolean">None</span>
+                <span class="token keyword">break</span>
+            p<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> lastNode
+            lastNode<span class="token punctuation">.</span><span class="token builtin">next</span> <span class="token operator">=</span> <span class="token builtin">next</span>
+            p <span class="token operator">=</span> <span class="token builtin">next</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="可视化-1"><a href="#可视化-1" class="headerlink" title="可视化"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%8F%AF%E8%A7%86%E5%8C%96-1">可视化</a></h3><details data-v-ee1a9bd0="" id="div_reorder-list" class="hint-container details" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1rem 0px 0px; border-radius: 0.5rem; margin: 1.3em 0px;"><summary data-v-ee1a9bd0="" style="position: relative; margin: -1rem 0px 0px; padding-block: 1em; padding-inline: 2.3em 1.5em; list-style: none; font-size: large; cursor: pointer; display: flex; align-items: center;"><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path data-v-ee1a9bd0="" fill="currentColor" d="m4.415 18.167l7.17-7.17l1.414 1.414l-7.17 7.17z" opacity="0.3"></path><path data-v-ee1a9bd0="" fill="currentColor" d="m20 7l.94-2.06L23 4l-2.06-.94L20 1l-.94 2.06L17 4l2.06.94zM8.5 7l.94-2.06L11.5 4l-2.06-.94L8.5 1l-.94 2.06L5.5 4l2.06.94zM20 12.5l-.94 2.06l-2.06.94l2.06.94l.94 2.06l.94-2.06L23 15.5l-2.06-.94zm-2.29-3.38l-2.83-2.83c-.2-.19-.45-.29-.71-.29s-.51.1-.71.29L2.29 17.46a.996.996 0 0 0 0 1.41l2.83 2.83c.2.2.45.3.71.3s.51-.1.71-.29l11.17-11.17c.39-.39.39-1.03 0-1.42M5.83 19.59l-1.41-1.41L11.59 11L13 12.41zM14.41 11L13 9.59l1.17-1.17l1.41 1.41z"></path></svg>&nbsp;<strong data-v-ee1a9bd0="" style="font-weight: 600;">算法可视化面板</strong><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="0.9em" height="0.9em" viewBox="0 0 24 24" style="margin-left: auto; margin-right: 10px;"><path data-v-ee1a9bd0="" fill="currentColor" d="M20 20v1h1v-1zm-4.293-5.707a1 1 0 0 0-1.414 1.414zM19 14v6h2v-6zm1 5h-6v2h6zm.707.293l-5-5l-1.414 1.414l5 5zM4 20H3v1h1zm5.707-4.293a1 1 0 0 0-1.414-1.414zM3 14v6h2v-6zm1 7h6v-2H4zm.707-.293l5-5l-1.414-1.414l-5 5zM20 4h1V3h-1zm-5.707 4.293a1 1 0 0 0 1.414 1.414zM21 10V4h-2v6zm-1-7h-6v2h6zm-.707.293l-5 5l1.414 1.414l5-5zM4 4V3H3v1zm4.293 5.707a1 1 0 0 0 1.414-1.414zM5 10V4H3v6zM4 5h6V3H4zm-.707-.293l5 5l1.414-1.414l-5-5z"></path></svg><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style="margin-right: 10px;"><path data-v-ee1a9bd0="" fill="currentColor" d="M17.65 6.35a7.95 7.95 0 0 0-6.48-2.31c-3.67.37-6.69 3.35-7.1 7.02C3.52 15.91 7.27 20 12 20a7.98 7.98 0 0 0 7.21-4.56c.32-.67-.16-1.44-.9-1.44c-.37 0-.72.2-.88.53a5.994 5.994 0 0 1-6.8 3.31c-2.22-.49-4.01-2.3-4.48-4.52A6.002 6.002 0 0 1 12 6c1.66 0 3.14.69 4.22 1.78l-1.51 1.51c-.63.63-.19 1.71.7 1.71H19c.55 0 1-.45 1-1V6.41c0-.89-1.08-1.34-1.71-.71z"></path></svg><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path data-v-ee1a9bd0="" fill="currentColor" d="M17 7h-4v2h4c1.65 0 3 1.35 3 3s-1.35 3-3 3h-4v2h4c2.76 0 5-2.24 5-5s-2.24-5-5-5m-6 8H7c-1.65 0-3-1.35-3-3s1.35-3 3-3h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4zm-3-4h8v2H8z"></path></svg></summary><div data-v-ee1a9bd0="" class="resizable" style="width: 780px; max-width: 100%; height: 70vh; min-height: 500px; overflow: hidden; resize: both;"><iframe data-v-ee1a9bd0="" title="algo-visualize panel" allow="clipboard-write; fullscreen;" id="iframe_reorder-list" src="https://labuladong.online/algo-visualize/leetcode/reorder-list/" width="100%" height="100%" loading="lazy" scrolling="auto" frameborder="0" style="overflow: auto;"></iframe></div></details>
+
+<p><strong>类似题目</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/LGjMqU">剑指 Offer II 026. 重排链表 🟠</a></li>
+</ul>
+<h2 id="20-有效的括号"><a href="#20-有效的括号" class="headerlink" title="20. 有效的括号"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#slug_valid-parentheses">20. 有效的括号</a></h2><details class="hint-container details" open="" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1.25rem 1rem; border-radius: 0.5rem; color: rgb(60, 60, 67); font-family: Inter, ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><summary style="position: relative; margin: -1rem -1rem 0.5em; padding-block: 1em; padding-inline: 3em 1.5em; list-style: none; font-size: 16px; cursor: pointer;"><strong style="font-weight: 600;">20. 有效的括号</strong>&nbsp;|<span>&nbsp;</span><span><a href="https://leetcode.cn/problems/valid-parentheses/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣</a><span>&nbsp;</span>|<span>&nbsp;</span></span><span><a href="https://leetcode.com/problems/valid-parentheses/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">LeetCode</a><span>&nbsp;</span>|</span><span>&nbsp;</span>&nbsp;🟢</summary><div><p style="line-height: 1.6; overflow-wrap: break-word;">给定一个只包括<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'('</code>，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">')'</code>，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'&#123;'</code>，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'&#125;'</code>，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'['</code>，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">']'</code>&nbsp;的字符串<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">s</code><span>&nbsp;</span>，判断字符串是否有效。</p><p style="line-height: 1.6; overflow-wrap: break-word;">有效字符串需满足：</p><ol style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>左括号必须用相同类型的右括号闭合。</li><li>左括号必须以正确的顺序闭合。</li><li>每个右括号都有一个对应的相同类型的左括号。</li></ol><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 1：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>s = "()"
+<strong style="font-weight: 600;">输出：</strong>true
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例&nbsp;2：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>s = "()[]{}"
+<strong style="font-weight: 600;">输出：</strong>true
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例&nbsp;3：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>s = "(]"
+<strong style="font-weight: 600;">输出：</strong>false
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">1 &lt;= s.length &lt;= 10<sup>4</sup></code></li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">s</code><span>&nbsp;</span>仅由括号<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'()[]&#123;&#125;'</code><span>&nbsp;</span>组成</li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/valid-parentheses/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 20. 有效的括号</a>。</strong></details>
+
+<h3 id="基本思路-2"><a href="#基本思路-2" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-2">基本思路</a></h3><p>栈是一种先进后出的数据结构，处理括号问题的时候尤其有用。</p>
+<p>括号的有效性判断在笔试中和现实中都很常见，比如说我们写的代码，编辑器会检查括号是否正确闭合。而且我们的代码可能会包含三种括号 <code>[]()&#123;&#125;</code>，判断起来有一点难度。</p>
+<p>解决这个问题之前，我们先降低难度，思考一下，<strong>如果只有一种括号 <code>()</code></strong>，应该如何判断字符串组成的括号是否有效呢？</p>
+<p>假设字符串中只有圆括号，如果想让括号字符串有效，那么必须做到：</p>
+<p><strong>每个右括号 <code>)</code> 的左边必须有一个左括号 <code>(</code> 和它匹配</strong>。</p>
+<p>比如说字符串 <code>()))((</code> 中，中间的两个右括号<strong>左边</strong>就没有左括号匹配，所以这个括号组合是无效的。</p>
+<p>那么根据这个思路，我们可以写出算法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">isValid</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 待匹配的左括号数量</span>
+    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> str<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token char">'('</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            left<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 遇到右括号</span>
+            left<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// 右括号太多</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>left <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 是否所有的左括号都被匹配了</span>
+    <span class="token keyword">return</span> left <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果只有圆括号，这样就能正确判断有效性。对于三种括号的情况，我一开始想模仿这个思路，定义三个变量 <code>left1</code>，<code>left2</code>，<code>left3</code> 分别处理每种括号，虽然要多写不少 if else 分支，但是似乎可以解决问题。</p>
+<p>但实际上直接照搬这种思路是不行的，比如说只有一个括号的情况下 <code>(())</code> 是有效的，但是多种括号的情况下， <code>[(])</code> 显然是无效的。</p>
+<p>仅仅记录每种左括号出现的次数已经不能做出正确判断了，我们要加大存储的信息量，可以利用栈来模仿类似的思路。</p>
+<p>我们这道题就用一个名为 <code>left</code> 的栈代替之前思路中的 <code>left</code> 变量，<strong>遇到左括号就入栈，遇到右括号就去栈中寻找最近的左括号，看是否匹配</strong>。</p>
+<p><strong>详细题解</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/">【练习】栈的经典习题</a></li>
+</ul>
+<h3 id="解法代码-2"><a href="#解法代码-2" class="headerlink" title="解法代码"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E8%A7%A3%E6%B3%95%E4%BB%A3%E7%A0%81-2">解法代码</a></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">isValid</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+        left <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> c <span class="token keyword">in</span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> c <span class="token keyword">in</span> <span class="token string">'(&#123;['</span><span class="token punctuation">:</span>
+                <span class="token comment"># 字符 c 是左括号，入栈</span>
+                left<span class="token punctuation">.</span>append<span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token comment"># 字符 c 是右括号</span>
+                <span class="token keyword">if</span> left <span class="token keyword">and</span> self<span class="token punctuation">.</span>leftOf<span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">==</span> left<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    left<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    <span class="token comment"># 和最近的左括号不匹配</span>
+                    <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token comment"># 是否所有的左括号都被匹配了</span>
+        <span class="token keyword">return</span> <span class="token keyword">not</span> left
+
+    <span class="token keyword">def</span> <span class="token function">leftOf</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> c<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">str</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> c <span class="token operator">==</span> <span class="token string">'&#125;'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">'&#123;'</span>
+        <span class="token keyword">if</span> c <span class="token operator">==</span> <span class="token string">')'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">'('</span>
+        <span class="token keyword">return</span> <span class="token string">'['</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="可视化-2"><a href="#可视化-2" class="headerlink" title="可视化"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%8F%AF%E8%A7%86%E5%8C%96-2">可视化</a></h3><details data-v-ee1a9bd0="" id="div_valid-parentheses" class="hint-container details" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1rem 0px 0px; border-radius: 0.5rem; margin: 1.3em 0px;"><summary data-v-ee1a9bd0="" style="position: relative; margin: -1rem 0px 0px; padding-block: 1em; padding-inline: 2.3em 1.5em; list-style: none; font-size: large; cursor: pointer; display: flex; align-items: center;"><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path data-v-ee1a9bd0="" fill="currentColor" d="m4.415 18.167l7.17-7.17l1.414 1.414l-7.17 7.17z" opacity="0.3"></path><path data-v-ee1a9bd0="" fill="currentColor" d="m20 7l.94-2.06L23 4l-2.06-.94L20 1l-.94 2.06L17 4l2.06.94zM8.5 7l.94-2.06L11.5 4l-2.06-.94L8.5 1l-.94 2.06L5.5 4l2.06.94zM20 12.5l-.94 2.06l-2.06.94l2.06.94l.94 2.06l.94-2.06L23 15.5l-2.06-.94zm-2.29-3.38l-2.83-2.83c-.2-.19-.45-.29-.71-.29s-.51.1-.71.29L2.29 17.46a.996.996 0 0 0 0 1.41l2.83 2.83c.2.2.45.3.71.3s.51-.1.71-.29l11.17-11.17c.39-.39.39-1.03 0-1.42M5.83 19.59l-1.41-1.41L11.59 11L13 12.41zM14.41 11L13 9.59l1.17-1.17l1.41 1.41z"></path></svg>&nbsp;<strong data-v-ee1a9bd0="" style="font-weight: 600;">算法可视化面板</strong><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="0.9em" height="0.9em" viewBox="0 0 24 24" style="margin-left: auto; margin-right: 10px;"><path data-v-ee1a9bd0="" fill="currentColor" d="M20 20v1h1v-1zm-4.293-5.707a1 1 0 0 0-1.414 1.414zM19 14v6h2v-6zm1 5h-6v2h6zm.707.293l-5-5l-1.414 1.414l5 5zM4 20H3v1h1zm5.707-4.293a1 1 0 0 0-1.414-1.414zM3 14v6h2v-6zm1 7h6v-2H4zm.707-.293l5-5l-1.414-1.414l-5 5zM20 4h1V3h-1zm-5.707 4.293a1 1 0 0 0 1.414 1.414zM21 10V4h-2v6zm-1-7h-6v2h6zm-.707.293l-5 5l1.414 1.414l5-5zM4 4V3H3v1zm4.293 5.707a1 1 0 0 0 1.414-1.414zM5 10V4H3v6zM4 5h6V3H4zm-.707-.293l5 5l1.414-1.414l-5-5z"></path></svg><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style="margin-right: 10px;"><path data-v-ee1a9bd0="" fill="currentColor" d="M17.65 6.35a7.95 7.95 0 0 0-6.48-2.31c-3.67.37-6.69 3.35-7.1 7.02C3.52 15.91 7.27 20 12 20a7.98 7.98 0 0 0 7.21-4.56c.32-.67-.16-1.44-.9-1.44c-.37 0-.72.2-.88.53a5.994 5.994 0 0 1-6.8 3.31c-2.22-.49-4.01-2.3-4.48-4.52A6.002 6.002 0 0 1 12 6c1.66 0 3.14.69 4.22 1.78l-1.51 1.51c-.63.63-.19 1.71.7 1.71H19c.55 0 1-.45 1-1V6.41c0-.89-1.08-1.34-1.71-.71z"></path></svg><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path data-v-ee1a9bd0="" fill="currentColor" d="M17 7h-4v2h4c1.65 0 3 1.35 3 3s-1.35 3-3 3h-4v2h4c2.76 0 5-2.24 5-5s-2.24-5-5-5m-6 8H7c-1.65 0-3-1.35-3-3s1.35-3 3-3h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4zm-3-4h8v2H8z"></path></svg></summary><div data-v-ee1a9bd0="" class="resizable" style="width: 780px; max-width: 100%; height: 70vh; min-height: 500px; overflow: hidden; resize: both;"><iframe data-v-ee1a9bd0="" title="algo-visualize panel" allow="clipboard-write; fullscreen;" id="iframe_valid-parentheses" src="https://labuladong.online/algo-visualize/leetcode/valid-parentheses/" width="100%" height="100%" loading="lazy" scrolling="auto" frameborder="0" style="overflow: auto;"></iframe></div></details>
+
+<h2 id="150-逆波兰表达式求值"><a href="#150-逆波兰表达式求值" class="headerlink" title="150. 逆波兰表达式求值"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#slug_evaluate-reverse-polish-notation">150. 逆波兰表达式求值</a></h2><details class="hint-container details" open="" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1.25rem 1rem; border-radius: 0.5rem; color: rgb(60, 60, 67); font-family: Inter, ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><summary style="position: relative; margin: -1rem -1rem 0.5em; padding-block: 1em; padding-inline: 3em 1.5em; list-style: none; font-size: 16px; cursor: pointer;"><strong style="font-weight: 600;">150. 逆波兰表达式求值</strong>&nbsp;|<span>&nbsp;</span><span><a href="https://leetcode.cn/problems/evaluate-reverse-polish-notation/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣</a><span>&nbsp;</span>|<span>&nbsp;</span></span><span><a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">LeetCode</a><span>&nbsp;</span>|</span><span>&nbsp;</span>&nbsp;🟠</summary><div><p style="line-height: 1.6; overflow-wrap: break-word;">给你一个字符串数组<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">tokens</code><span>&nbsp;</span>，表示一个根据&nbsp;<a href="https://baike.baidu.com/item/%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/128437" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">逆波兰表示法</a><span>&nbsp;</span>表示的算术表达式。</p><p style="line-height: 1.6; overflow-wrap: break-word;">请你计算该表达式。返回一个表示表达式值的整数。</p><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">注意：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>有效的算符为<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'+'</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'-'</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'*'</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'/'</code><span>&nbsp;</span>。</li><li>每个操作数（运算对象）都可以是一个整数或者另一个表达式。</li><li>两个整数之间的除法总是<span>&nbsp;</span><strong style="font-weight: 600;">向零截断</strong><span>&nbsp;</span>。</li><li>表达式中不含除零运算。</li><li>输入是一个根据逆波兰表示法表示的算术表达式。</li><li>答案及所有中间计算结果可以用<span>&nbsp;</span><strong style="font-weight: 600;">32 位</strong><span>&nbsp;</span>整数表示。</li></ul><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例&nbsp;1：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>tokens = ["2","1","+","3","*"]
+<strong style="font-weight: 600;">输出：</strong>9
+<strong style="font-weight: 600;">解释：</strong>该算式转化为常见的中缀算术表达式为：((2 + 1) * 3) = 9
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例&nbsp;2：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>tokens = ["4","13","5","/","+"]
+<strong style="font-weight: 600;">输出：</strong>6
+<strong style="font-weight: 600;">解释：</strong>该算式转化为常见的中缀算术表达式为：(4 + (13 / 5)) = 6
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例&nbsp;3：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
+<strong style="font-weight: 600;">输出：</strong>22
+<strong style="font-weight: 600;">解释：</strong>该算式转化为常见的中缀算术表达式为：
+  ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
+= ((10 * (6 / (12 * -11))) + 17) + 5
+= ((10 * (6 / -132)) + 17) + 5
+= ((10 * 0) + 17) + 5
+= (0 + 17) + 5
+= 17 + 5
+= 22</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">1 &lt;= tokens.length &lt;= 10<sup>4</sup></code></li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">tokens[i]</code>&nbsp;是一个算符（<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">"+"</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">"-"</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">"*"</code><span>&nbsp;</span>或<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">"/"</code>），或是在范围<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">[-200, 200]</code><span>&nbsp;</span>内的一个整数</li></ul><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">逆波兰表达式：</strong></p><p style="line-height: 1.6; overflow-wrap: break-word;">逆波兰表达式是一种后缀表达式，所谓后缀就是指算符写在后面。</p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>平常使用的算式则是一种中缀表达式，如<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">( 1 + 2 ) * ( 3 + 4 )</code><span>&nbsp;</span>。</li><li>该算式的逆波兰表达式写法为<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">( ( 1 2 + ) ( 3 4 + ) * )</code><span>&nbsp;</span>。</li></ul><p style="line-height: 1.6; overflow-wrap: break-word;">逆波兰表达式主要有以下两个优点：</p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>去掉括号后表达式无歧义，上式即便写成<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">1 2 + 3 4 + *<span>&nbsp;</span></code>也可以依据次序计算出正确结果。</li><li>适合用栈操作运算：遇到数字则入栈；遇到算符则取出栈顶两个数字进行计算，并将结果压入栈中</li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/evaluate-reverse-polish-notation/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 150. 逆波兰表达式求值</a>。</strong></details>
+
+<h3 id="基本思路-3"><a href="#基本思路-3" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-3">基本思路</a></h3><p>逆波兰表达式发明出来就是为了方便计算机运用「栈」进行表达式运算的，其运算规则如下：</p>
+<p>按顺序遍历逆波兰表达式中的字符，如果是数字，则放入栈；如果是运算符，则将栈顶的两个元素拿出来进行运算，再将结果放入栈。对于减法和除法，运算顺序别搞反了，栈顶第二个数是被除（减）数。</p>
+<p>所以这题很简单，直接按照运算规则借助栈计算表达式结果即可。</p>
+<p><strong>详细题解</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/">【练习】栈的经典习题</a></li>
+</ul>
+<h3 id="解法代码-3"><a href="#解法代码-3" class="headerlink" title="解法代码"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E8%A7%A3%E6%B3%95%E4%BB%A3%E7%A0%81-3">解法代码</a></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">evalRPN</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> tokens<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">str</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        stk <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> token <span class="token keyword">in</span> tokens<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> token <span class="token keyword">in</span> <span class="token string">"+-*/"</span><span class="token punctuation">:</span>
+                <span class="token comment"># 是个运算符，从栈顶拿出两个数字进行运算，运算结果入栈</span>
+                a <span class="token operator">=</span> stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                b <span class="token operator">=</span> stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> token <span class="token operator">==</span> <span class="token string">"+"</span><span class="token punctuation">:</span>
+                    stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>a <span class="token operator">+</span> b<span class="token punctuation">)</span>
+                <span class="token keyword">elif</span> token <span class="token operator">==</span> <span class="token string">"*"</span><span class="token punctuation">:</span>
+                    stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>a <span class="token operator">*</span> b<span class="token punctuation">)</span>
+                <span class="token comment"># 对于减法和除法，顺序别搞反了，第二个数是被除（减）数</span>
+                <span class="token keyword">elif</span> token <span class="token operator">==</span> <span class="token string">"-"</span><span class="token punctuation">:</span>
+                    stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>b <span class="token operator">-</span> a<span class="token punctuation">)</span>
+                <span class="token keyword">elif</span> token <span class="token operator">==</span> <span class="token string">"/"</span><span class="token punctuation">:</span>
+                    stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>b <span class="token operator">/</span> a<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># Ensure the result is an integer</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token comment"># 是个数字，直接入栈即可</span>
+                stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># 最后栈中剩下一个数字，即是计算结果</span>
+        <span class="token keyword">return</span> stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="可视化-3"><a href="#可视化-3" class="headerlink" title="可视化"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%8F%AF%E8%A7%86%E5%8C%96-3">可视化</a></h3><details data-v-ee1a9bd0="" id="div_evaluate-reverse-polish-notation" class="hint-container details" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1rem 0px 0px; border-radius: 0.5rem; margin: 1.3em 0px;"><summary data-v-ee1a9bd0="" style="position: relative; margin: -1rem 0px 0px; padding-block: 1em; padding-inline: 2.3em 1.5em; list-style: none; font-size: large; cursor: pointer; display: flex; align-items: center;"><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path data-v-ee1a9bd0="" fill="currentColor" d="m4.415 18.167l7.17-7.17l1.414 1.414l-7.17 7.17z" opacity="0.3"></path><path data-v-ee1a9bd0="" fill="currentColor" d="m20 7l.94-2.06L23 4l-2.06-.94L20 1l-.94 2.06L17 4l2.06.94zM8.5 7l.94-2.06L11.5 4l-2.06-.94L8.5 1l-.94 2.06L5.5 4l2.06.94zM20 12.5l-.94 2.06l-2.06.94l2.06.94l.94 2.06l.94-2.06L23 15.5l-2.06-.94zm-2.29-3.38l-2.83-2.83c-.2-.19-.45-.29-.71-.29s-.51.1-.71.29L2.29 17.46a.996.996 0 0 0 0 1.41l2.83 2.83c.2.2.45.3.71.3s.51-.1.71-.29l11.17-11.17c.39-.39.39-1.03 0-1.42M5.83 19.59l-1.41-1.41L11.59 11L13 12.41zM14.41 11L13 9.59l1.17-1.17l1.41 1.41z"></path></svg>&nbsp;<strong data-v-ee1a9bd0="" style="font-weight: 600;">算法可视化面板</strong><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="0.9em" height="0.9em" viewBox="0 0 24 24" style="margin-left: auto; margin-right: 10px;"><path data-v-ee1a9bd0="" fill="currentColor" d="M20 20v1h1v-1zm-4.293-5.707a1 1 0 0 0-1.414 1.414zM19 14v6h2v-6zm1 5h-6v2h6zm.707.293l-5-5l-1.414 1.414l5 5zM4 20H3v1h1zm5.707-4.293a1 1 0 0 0-1.414-1.414zM3 14v6h2v-6zm1 7h6v-2H4zm.707-.293l5-5l-1.414-1.414l-5 5zM20 4h1V3h-1zm-5.707 4.293a1 1 0 0 0 1.414 1.414zM21 10V4h-2v6zm-1-7h-6v2h6zm-.707.293l-5 5l1.414 1.414l5-5zM4 4V3H3v1zm4.293 5.707a1 1 0 0 0 1.414-1.414zM5 10V4H3v6zM4 5h6V3H4zm-.707-.293l5 5l1.414-1.414l-5-5z"></path></svg><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style="margin-right: 10px;"><path data-v-ee1a9bd0="" fill="currentColor" d="M17.65 6.35a7.95 7.95 0 0 0-6.48-2.31c-3.67.37-6.69 3.35-7.1 7.02C3.52 15.91 7.27 20 12 20a7.98 7.98 0 0 0 7.21-4.56c.32-.67-.16-1.44-.9-1.44c-.37 0-.72.2-.88.53a5.994 5.994 0 0 1-6.8 3.31c-2.22-.49-4.01-2.3-4.48-4.52A6.002 6.002 0 0 1 12 6c1.66 0 3.14.69 4.22 1.78l-1.51 1.51c-.63.63-.19 1.71.7 1.71H19c.55 0 1-.45 1-1V6.41c0-.89-1.08-1.34-1.71-.71z"></path></svg><svg data-v-ee1a9bd0="" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path data-v-ee1a9bd0="" fill="currentColor" d="M17 7h-4v2h4c1.65 0 3 1.35 3 3s-1.35 3-3 3h-4v2h4c2.76 0 5-2.24 5-5s-2.24-5-5-5m-6 8H7c-1.65 0-3-1.35-3-3s1.35-3 3-3h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4zm-3-4h8v2H8z"></path></svg></summary><div data-v-ee1a9bd0="" class="resizable" style="width: 780px; max-width: 100%; height: 70vh; min-height: 500px; overflow: hidden; resize: both;"><iframe data-v-ee1a9bd0="" title="algo-visualize panel" allow="clipboard-write; fullscreen;" id="iframe_evaluate-reverse-polish-notation" src="https://labuladong.online/algo-visualize/leetcode/evaluate-reverse-polish-notation/" width="100%" height="100%" loading="lazy" scrolling="auto" frameborder="0" style="overflow: auto;"></iframe></div></details>
+
+<p><strong>类似题目</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/8Zf90G">剑指 Offer II 036. 后缀表达式 🟠</a></li>
+</ul>
+<h2 id="225-用队列实现栈"><a href="#225-用队列实现栈" class="headerlink" title="225. 用队列实现栈"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#slug_implement-stack-using-queues">225. 用队列实现栈</a></h2><details class="hint-container details" open="" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1.25rem 1rem; border-radius: 0.5rem; color: rgb(60, 60, 67); font-family: Inter, ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><summary style="position: relative; margin: -1rem -1rem 0.5em; padding-block: 1em; padding-inline: 3em 1.5em; list-style: none; font-size: 16px; cursor: pointer;"><strong style="font-weight: 600;">225. 用队列实现栈</strong>&nbsp;|<span>&nbsp;</span><span><a href="https://leetcode.cn/problems/implement-stack-using-queues/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣</a><span>&nbsp;</span>|<span>&nbsp;</span></span><span><a href="https://leetcode.com/problems/implement-stack-using-queues/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">LeetCode</a><span>&nbsp;</span>|</span><span>&nbsp;</span>&nbsp;🟢</summary><div><p style="line-height: 1.6; overflow-wrap: break-word;">请你仅使用两个队列实现一个后入先出（LIFO）的栈，并支持普通栈的全部四种操作（<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">push</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">top</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">pop</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">empty</code>）。</p><p style="line-height: 1.6; overflow-wrap: break-word;">实现<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">MyStack</code><span>&nbsp;</span>类：</p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">void push(int x)</code><span>&nbsp;</span>将元素 x 压入栈顶。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">int pop()</code><span>&nbsp;</span>移除并返回栈顶元素。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">int top()</code><span>&nbsp;</span>返回栈顶元素。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">boolean empty()</code><span>&nbsp;</span>如果栈是空的，返回<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">true</code><span>&nbsp;</span>；否则，返回<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">false</code><span>&nbsp;</span>。</li></ul><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">注意：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>你只能使用队列的标准操作 —— 也就是&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">push to back</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">peek/pop from front</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">size</code><span>&nbsp;</span>和&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">is empty</code>&nbsp;这些操作。</li><li>你所使用的语言也许不支持队列。&nbsp;你可以使用 list （列表）或者 deque（双端队列）来模拟一个队列&nbsp;, 只要是标准的队列操作即可。</li></ul><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>
+["MyStack", "push", "push", "top", "pop", "empty"]
+[[], [1], [2], [], [], []]
+<strong style="font-weight: 600;">输出：</strong>
+[null, null, null, 2, 2, false]
+
+<p><strong style="font-weight: 600;">解释：</strong><br>MyStack myStack &#x3D; new MyStack();<br>myStack.push(1);<br>myStack.push(2);<br>myStack.top(); &#x2F;&#x2F; 返回 2<br>myStack.pop(); &#x2F;&#x2F; 返回 2<br>myStack.empty(); &#x2F;&#x2F; 返回 False<br></pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">1 &lt;= x &lt;= 9</code></li><li>最多调用<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">100</code><span>&nbsp;</span>次<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">push</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">pop</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">top</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">empty</code></li><li>每次调用<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">pop</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">top</code><span>&nbsp;</span>都保证栈不为空</li></ul><p style="line-height: 1.6; overflow-wrap: break-word; margin-bottom: 0px; padding-bottom: 0px;"><strong style="font-weight: 600;">进阶：</strong>你能否仅用一个队列来实现栈。</p></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/implement-stack-using-queues/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 225. 用队列实现栈</a>。</strong></details></p>
+<h3 id="基本思路-4"><a href="#基本思路-4" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-4">基本思路</a></h3><p>底层用队列实现栈就比较简单粗暴了，只需要一个队列作为底层数据结构。</p>
+<p>底层队列只能向队尾添加元素，所以栈的 <code>pop</code> API 相当于要从队尾取元素：</p>
+<p><img src="/2025/06/14/lian-xi-zhan-de-jing-dian-xi-ti/5.jpg" alt="img"></p>
+<p>那么最简单的思路就是，把队尾元素前面的所有元素重新塞到队尾，让队尾元素排到队头，这样就可以取出了：</p>
+<p><img src="/2025/06/14/lian-xi-zhan-de-jing-dian-xi-ti/6.jpg" alt="img"></p>
+<p><strong>详细题解</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/stack-queue/">队列实现栈以及栈实现队列</a></li>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/">【练习】栈的经典习题</a></li>
+</ul>
+<h3 id="解法代码-4"><a href="#解法代码-4" class="headerlink" title="解法代码"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E8%A7%A3%E6%B3%95%E4%BB%A3%E7%A0%81-4">解法代码</a></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+
+<span class="token keyword">class</span> <span class="token class-name">MyStack</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>q <span class="token operator">=</span> deque<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>top_elem <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token comment"># 将元素 x 压入栈顶</span>
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token comment"># x 是队列的队尾，是栈的栈顶</span>
+        self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>top_elem <span class="token operator">=</span> x
+
+    <span class="token comment"># 返回栈顶元素</span>
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>top_elem
+
+    <span class="token comment"># 删除栈顶的元素并返回</span>
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        size <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>q<span class="token punctuation">)</span>
+        <span class="token comment"># 留下队尾 2 个元素</span>
+        <span class="token keyword">while</span> size <span class="token operator">></span> <span class="token number">2</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            size <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token comment"># 记录新的队尾元素</span>
+        self<span class="token punctuation">.</span>top_elem <span class="token operator">=</span> self<span class="token punctuation">.</span>q<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>append<span class="token punctuation">(</span>self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment"># 删除之前的队尾元素</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>q<span class="token punctuation">.</span>popleft<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 判断栈是否为空</span>
+    <span class="token keyword">def</span> <span class="token function">empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>q<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>类似题目</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-queue-using-stacks">232. 用栈实现队列 🟢</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof">剑指 Offer 09. 用两个栈实现队列 🟢</a></li>
+</ul>
+<h2 id="388-文件的最长绝对路径"><a href="#388-文件的最长绝对路径" class="headerlink" title="388. 文件的最长绝对路径"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#slug_longest-absolute-file-path">388. 文件的最长绝对路径</a></h2><details class="hint-container details" open="" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1.25rem 1rem; border-radius: 0.5rem; color: rgb(60, 60, 67); font-family: Inter, ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><summary style="position: relative; margin: -1rem -1rem 0.5em; padding-block: 1em; padding-inline: 3em 1.5em; list-style: none; font-size: 16px; cursor: pointer;"><strong style="font-weight: 600;">388. 文件的最长绝对路径</strong>&nbsp;|<span>&nbsp;</span><span><a href="https://leetcode.cn/problems/longest-absolute-file-path/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣</a><span>&nbsp;</span>|<span>&nbsp;</span></span><span><a href="https://leetcode.com/problems/longest-absolute-file-path/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">LeetCode</a><span>&nbsp;</span>|</span><span>&nbsp;</span>&nbsp;🟠</summary><div><p style="line-height: 1.6; overflow-wrap: break-word;">假设有一个同时存储文件和目录的文件系统。下图展示了文件系统的一个示例：</p><p style="line-height: 1.6; overflow-wrap: break-word;"><img alt="" src="https://labuladong.online/algo/images/lc/uploads/2020/08/28/mdir.jpg" style="max-width: 100%; height: 142px; width: 300px;"></p><p style="line-height: 1.6; overflow-wrap: break-word;">这里将<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">dir</code><span>&nbsp;</span>作为根目录中的唯一目录。<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">dir</code><span>&nbsp;</span>包含两个子目录<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">subdir1</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">subdir2</code><span>&nbsp;</span>。<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">subdir1</code><span>&nbsp;</span>包含文件<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">file1.ext</code><span>&nbsp;</span>和子目录<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">subsubdir1</code>；<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">subdir2</code><span>&nbsp;</span>包含子目录<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">subsubdir2</code>，该子目录下包含文件<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">file2.ext</code><span>&nbsp;</span>。</p><p style="line-height: 1.6; overflow-wrap: break-word;">在文本格式中，如下所示(⟶表示制表符)：</p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;">dir
+⟶ subdir1
+⟶ ⟶ file1.ext
+⟶ ⟶ subsubdir1
+⟶ subdir2
+⟶ ⟶ subsubdir2
+⟶ ⟶ ⟶ file2.ext
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;">如果是代码表示，上面的文件系统可以写为<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">"dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"</code><span>&nbsp;</span>。<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'\n'</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'\t'</code><span>&nbsp;</span>分别是换行符和制表符。</p><p style="line-height: 1.6; overflow-wrap: break-word;">文件系统中的每个文件和文件夹都有一个唯一的<span>&nbsp;</span><strong style="font-weight: 600;">绝对路径</strong><span>&nbsp;</span>，即必须打开才能到达文件/目录所在位置的目录顺序，所有路径用<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'/'</code><span>&nbsp;</span>连接。上面例子中，指向<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">file2.ext</code><span>&nbsp;</span>的<span>&nbsp;</span><strong style="font-weight: 600;">绝对路径</strong><span>&nbsp;</span>是<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">"dir/subdir2/subsubdir2/file2.ext"</code><span>&nbsp;</span>。每个目录名由字母、数字和/或空格组成，每个文件名遵循<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">name.extension</code><span>&nbsp;</span>的格式，其中&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">name</code>&nbsp;和&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">extension</code>由字母、数字和/或空格组成。</p><p style="line-height: 1.6; overflow-wrap: break-word;">给定一个以上述格式表示文件系统的字符串<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">input</code><span>&nbsp;</span>，返回文件系统中&nbsp;<em>指向&nbsp;<strong style="font-weight: 600;">文件</strong>&nbsp;的<span>&nbsp;</span><strong style="font-weight: 600;">最长绝对路径</strong><span>&nbsp;</span>的长度</em>&nbsp;。 如果系统中没有文件，返回&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">0</code>。</p><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 1：</strong></p><img alt="" src="https://labuladong.online/algo/images/lc/uploads/2020/08/28/dir1.jpg" style="max-width: 100%; height: 101px; width: 200px;"><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>input = "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"
+<strong style="font-weight: 600;">输出：</strong>20
+<strong style="font-weight: 600;">解释：</strong>只有一个文件，绝对路径为 "dir/subdir2/file.ext" ，路径长度 20
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 2：</strong></p><img alt="" src="https://labuladong.online/algo/images/lc/uploads/2020/08/28/dir2.jpg" style="max-width: 100%; height: 151px; width: 300px;"><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>input = "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"
+<strong style="font-weight: 600;">输出：</strong>32
+<strong style="font-weight: 600;">解释：</strong>存在两个文件：
+"dir/subdir1/file1.ext" ，路径长度 21
+"dir/subdir2/subsubdir2/file2.ext" ，路径长度 32
+返回 32 ，因为这是最长的路径</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 3：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>input = "a"
+<strong style="font-weight: 600;">输出：</strong>0
+<strong style="font-weight: 600;">解释：</strong>不存在任何文件</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 4：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>input = "file1.txt\nfile2.txt\nlongfile.txt"
+<strong style="font-weight: 600;">输出：</strong>12
+<strong style="font-weight: 600;">解释：</strong>根目录下有 3 个文件。
+因为根目录中任何东西的绝对路径只是名称本身，所以答案是 "longfile.txt" ，路径长度为 12
+</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">1 &lt;= input.length &lt;= 10<sup>4</sup></code></li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">input</code><span>&nbsp;</span>可能包含小写或大写的英文字母，一个换行符<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'\n'</code>，一个制表符<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'\t'</code>，一个点<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">'.'</code>，一个空格<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">' '</code>，和数字。</li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/longest-absolute-file-path/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 388. 文件的最长绝对路径</a>。</strong></details>
+
+<h3 id="基本思路-5"><a href="#基本思路-5" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-5">基本思路</a></h3><p>我觉得这道题还是比较实用的，因为在我做这道题之前，我就思考并解决过这个问题，可以在这里和大家分享下我的使用场景：</p>
+<p>你可以看我的 <a target="_blank" rel="noopener" href="https://github.com/labuladong/fucking-algorithm#%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">GitHub 仓库中的文章目录</a>，是通过缩进来表示层级的，很类似本题所说的场景。然而我需要把这些目录转化成 HTML 文档，按照文件目录的形式把这些 HTML 部署到 <a target="_blank" rel="noopener" href="https://labuladong.gitee.io/algo/">我的网站</a> 上。你看，这是不是就涉及到本题生成文件的绝对路径的问题？</p>
+<p>对于这个场景，我当时其实尝试很多可行的办法。但这里我还是写一个最简单直接容易理解的解法吧，那就是用栈来辅助，对于每一个路径，都去维护正确的父路径，从而计算最长路径的长度。具体看代码注释吧。</p>
+<p><strong>详细题解</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/">【练习】栈的经典习题</a></li>
+</ul>
+<h3 id="解法代码-5"><a href="#解法代码-5" class="headerlink" title="解法代码"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E8%A7%A3%E6%B3%95%E4%BB%A3%E7%A0%81-5">解法代码</a></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">lengthLongestPath</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token builtin">input</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token comment"># 这个栈存储之前的父路径。实际上这里只用存父路径的长度就够了，这个优化留给你吧</span>
+        stack <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        max_len <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> part <span class="token keyword">in</span> <span class="token builtin">input</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            level <span class="token operator">=</span> part<span class="token punctuation">.</span>rfind<span class="token punctuation">(</span><span class="token string">"\t"</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span>
+            <span class="token comment"># 让栈中只保留当前目录的父路径</span>
+            <span class="token keyword">while</span> level <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>stack<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>part<span class="token punctuation">)</span> <span class="token operator">-</span> level<span class="token punctuation">)</span>
+            <span class="token comment"># 如果是文件，就计算路径长度</span>
+            <span class="token keyword">if</span> <span class="token string">"."</span> <span class="token keyword">in</span> part<span class="token punctuation">:</span>
+                total_length <span class="token operator">=</span> <span class="token builtin">sum</span><span class="token punctuation">(</span>stack<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token builtin">len</span><span class="token punctuation">(</span>stack<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+                <span class="token comment"># 加上父路径的分隔符</span>
+                max_len <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>max_len<span class="token punctuation">,</span> total_length<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> max_len<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="栈的设计题"><a href="#栈的设计题" class="headerlink" title="栈的设计题"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E6%A0%88%E7%9A%84%E8%AE%BE%E8%AE%A1%E9%A2%98">栈的设计题</a></h2><p>除了上面几道题，还有一类常考题目是让你设计具备额外功能的栈结构。</p>
+<h2 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155. 最小栈"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#slug_min-stack">155. 最小栈</a></h2><details class="hint-container details" open="" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1.25rem 1rem; border-radius: 0.5rem; color: rgb(60, 60, 67); font-family: Inter, ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><summary style="position: relative; margin: -1rem -1rem 0.5em; padding-block: 1em; padding-inline: 3em 1.5em; list-style: none; font-size: 16px; cursor: pointer;"><strong style="font-weight: 600;">155. 最小栈</strong>&nbsp;|<span>&nbsp;</span><span><a href="https://leetcode.cn/problems/min-stack/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣</a><span>&nbsp;</span>|<span>&nbsp;</span></span><span><a href="https://leetcode.com/problems/min-stack/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">LeetCode</a><span>&nbsp;</span>|</span><span>&nbsp;</span>&nbsp;🟠</summary><div><p style="line-height: 1.6; overflow-wrap: break-word;">设计一个支持<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">push</code><span>&nbsp;</span>，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">pop</code><span>&nbsp;</span>，<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">top</code><span>&nbsp;</span>操作，并能在常数时间内检索到最小元素的栈。</p><p style="line-height: 1.6; overflow-wrap: break-word;">实现<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">MinStack</code><span>&nbsp;</span>类:</p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">MinStack()</code><span>&nbsp;</span>初始化堆栈对象。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">void push(int val)</code><span>&nbsp;</span>将元素val推入堆栈。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">void pop()</code><span>&nbsp;</span>删除堆栈顶部的元素。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">int top()</code><span>&nbsp;</span>获取堆栈顶部的元素。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">int getMin()</code><span>&nbsp;</span>获取堆栈中的最小元素。</li></ul><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 1:</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>
+["MinStack","push","push","push","getMin","pop","top","getMin"]
+[[],[-2],[0],[-3],[],[],[],[]]
+
+<p><strong style="font-weight: 600;">输出：</strong><br>[null,null,null,null,-3,null,0,-2]</p>
+<p><strong style="font-weight: 600;">解释：</strong><br>MinStack minStack &#x3D; new MinStack();<br>minStack.push(-2);<br>minStack.push(0);<br>minStack.push(-3);<br>minStack.getMin();   –&gt; 返回 -3.<br>minStack.pop();<br>minStack.top();      –&gt; 返回 0.<br>minStack.getMin();   –&gt; 返回 -2.<br></pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">-2<sup>31</sup>&nbsp;&lt;= val &lt;= 2<sup>31</sup>&nbsp;- 1</code></li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">pop</code>、<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">top</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">getMin</code><span>&nbsp;</span>操作总是在<span>&nbsp;</span><strong style="font-weight: 600;">非空栈</strong><span>&nbsp;</span>上调用</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">push</code>,&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">pop</code>,&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">top</code>, and&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">getMin</code>最多被调用&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">3 * 10<sup>4</sup></code>&nbsp;次</li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/min-stack/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 155. 最小栈</a>。</strong></details></p>
+<h3 id="基本思路-6"><a href="#基本思路-6" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-6">基本思路</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure-basic/queue-stack-basic/">根据我们之前亲自动手实现的栈</a>，我们知道栈是一种操作受限的数据结构，只能从栈顶插入或弹出元素，所以对于标准的栈来说，如果想实现本题的 <code>getMin</code> 方法，只能老老实实把所有元素弹出来然后找最小值。<strong>想提高时间效率，那肯定要通过空间换时间的思路</strong>。</p>
+<p>不过在具体说解法之前，我想聊一下动态集合中维护最值的问题。这类问题看似简单，但实际上是个很棘手的问题。其实本题就是如下一个场景：</p>
+<p>假设你有若干数字，你用一个 <code>min</code> 变量维护了其中的最小值，如果现在给这些数字中添加一个新数字，那么只要比较这个新数字和 <code>min</code> 的大小就可以得出最新的最小值。但如果现在从这些数字钟删除一个数字，你还能用 <code>min</code> 变量得到最小值吗？答案是不能，因为如果这个被删除的数字恰好是最小值，那么新的 <code>min</code> 变量应该更新为第二小的元素对吧，但是我没有记录第二小的元素是多少，所以只能把所有数字重新遍历一遍。</p>
+<p>明确了难点再回到本题，就可以对症下药了。删除栈顶元素的时候，不确定新的最小值是多少，但楼下那哥们知道啊，他当时入栈时的最小值，就是现在的最小值呗。</p>
+<p>所以这道题的关键就是，<strong>每个元素入栈时，还要记下来当前栈中的最小值</strong>。比方说，可以用一个额外的栈 <code>minStk</code> 来记录栈中每个元素入栈时的栈中的最小元素是多少，这样每次删除元素时就能快速得到剩余栈中的最小元素了。</p>
+<p><img src="/2025/06/14/lian-xi-zhan-de-jing-dian-xi-ti/155.jpeg" alt="img"></p>
+<p>当然，我们还可以做一些优化，减少 <code>minStk</code> 中存储的元素个数，我把原始解法和优化解法都写出来了，供参考。</p>
+<blockquote>
+<p>PS：这道题并不难，但我还是很细致地分析了，希望你深刻理解其中的难点。下一步可以做一下 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum">239. 滑动窗口最大值</a>，请仔细观察和思考，队列结构是如何解决这个难点的。</p>
+</blockquote>
+<p><strong>详细题解</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/ds-design/">【练习】更多经典设计习题</a></li>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/">【练习】栈的经典习题</a></li>
+</ul>
+<h3 id="解法代码-6"><a href="#解法代码-6" class="headerlink" title="解法代码"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E8%A7%A3%E6%B3%95%E4%BB%A3%E7%A0%81-6">解法代码</a></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 原始思路</span>
+<span class="token keyword">class</span> <span class="token class-name">MinStack1</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 记录栈中的所有元素</span>
+        self<span class="token punctuation">.</span>stk <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token comment"># 阶段性记录栈中的最小元素</span>
+        self<span class="token punctuation">.</span>minStk <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+        <span class="token comment"># 维护 minStk 栈顶为全栈最小元素</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>minStk <span class="token keyword">or</span> val <span class="token operator">&lt;=</span> self<span class="token punctuation">.</span>minStk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token comment"># 新插入的这个元素就是全栈最小的</span>
+            self<span class="token punctuation">.</span>minStk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token comment"># 插入的这个元素比较大</span>
+            self<span class="token punctuation">.</span>minStk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>self<span class="token punctuation">.</span>minStk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>minStk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>stk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">getMin</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token comment"># minStk 栈顶为全栈最小元素</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>minStk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+<span class="token comment"># 优化版</span>
+<span class="token keyword">class</span> <span class="token class-name">MinStack</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 记录栈中的所有元素</span>
+        self<span class="token punctuation">.</span>stk <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token comment"># 阶段性记录栈中的最小元素</span>
+        self<span class="token punctuation">.</span>minStk <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+        <span class="token comment"># 维护 minStk 栈顶为全栈最小元素</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> self<span class="token punctuation">.</span>minStk <span class="token keyword">or</span> val <span class="token operator">&lt;=</span> self<span class="token punctuation">.</span>minStk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token comment"># 新插入的这个元素就是全栈最小的</span>
+            self<span class="token punctuation">.</span>minStk<span class="token punctuation">.</span>append<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token comment"># 注意 Java 的语言特性，比较 Integer 相等要用 equals 方法</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>stk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> self<span class="token punctuation">.</span>minStk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token comment"># 弹出的元素是全栈最小的</span>
+            self<span class="token punctuation">.</span>minStk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>stk<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>stk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">getMin</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token comment"># minStk 栈顶为全栈最小元素</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>minStk<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>类似题目</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum">239. 滑动窗口最大值 🔴</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof">剑指 Offer 30. 包含min函数的栈 🟢</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof">剑指 Offer 59 - I. 滑动窗口的最大值 🔴</a></li>
+</ul>
+<h2 id="895-最大频率栈"><a href="#895-最大频率栈" class="headerlink" title="895. 最大频率栈"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#slug_maximum-frequency-stack">895. 最大频率栈</a></h2><details class="hint-container details" open="" style="background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.1); transition: background 0.3s ease 0s, color 0.3s ease 0s; display: block; margin-block: 0.75rem; padding: 1.25rem 1rem; border-radius: 0.5rem; color: rgb(60, 60, 67); font-family: Inter, ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><summary style="position: relative; margin: -1rem -1rem 0.5em; padding-block: 1em; padding-inline: 3em 1.5em; list-style: none; font-size: 16px; cursor: pointer;"><strong style="font-weight: 600;">895. 最大频率栈</strong>&nbsp;|<span>&nbsp;</span><span><a href="https://leetcode.cn/problems/maximum-frequency-stack/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣</a><span>&nbsp;</span>|<span>&nbsp;</span></span><span><a href="https://leetcode.com/problems/maximum-frequency-stack/" class="" target="_blank" rel="noopener noreferrer" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">LeetCode</a><span>&nbsp;</span>|</span><span>&nbsp;</span>&nbsp;🔴</summary><div><p style="line-height: 1.6; overflow-wrap: break-word;">设计一个类似堆栈的数据结构，将元素推入堆栈，并从堆栈中弹出<strong style="font-weight: 600;">出现频率</strong>最高的元素。</p><p style="line-height: 1.6; overflow-wrap: break-word;">实现<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">FreqStack</code>&nbsp;类:</p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">FreqStack()</code>&nbsp;构造一个空的堆栈。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">void push(int val)</code>&nbsp;将一个整数&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">val</code>&nbsp;压入栈顶。</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">int pop()</code>&nbsp;删除并返回堆栈中出现频率最高的元素。<ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>如果出现频率最高的元素不只一个，则移除并返回最接近栈顶的元素。</li></ul></li></ul><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">示例 1：</strong></p><pre style="text-align: left; direction: ltr; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: unset; tab-size: 4; hyphens: none; overflow: auto;"><strong style="font-weight: 600;">输入：</strong>
+["FreqStack","push","push","push","push","push","push","pop","pop","pop","pop"],
+[[],[5],[7],[5],[7],[4],[5],[],[],[],[]]
+<strong style="font-weight: 600;">输出：</strong>[null,null,null,null,null,null,null,5,7,5,4]
+<strong style="font-weight: 600;">解释：</strong>
+FreqStack = new FreqStack();
+freqStack.push (5);//堆栈为 [5]
+freqStack.push (7);//堆栈是 [5,7]
+freqStack.push (5);//堆栈是 [5,7,5]
+freqStack.push (7);//堆栈是 [5,7,5,7]
+freqStack.push (4);//堆栈是 [5,7,5,7,4]
+freqStack.push (5);//堆栈是 [5,7,5,7,4,5]
+freqStack.pop ();//返回 5 ，因为 5 出现频率最高。堆栈变成 [5,7,5,7,4]。
+freqStack.pop ();//返回 7 ，因为 5 和 7 出现频率最高，但7最接近顶部。堆栈变成 [5,7,5,4]。
+freqStack.pop ();//返回 5 ，因为 5 出现频率最高。堆栈变成 [5,7,4]。
+freqStack.pop ();//返回 4 ，因为 4, 5 和 7 出现频率最高，但 4 是最接近顶部的。堆栈变成 [5,7]。</pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">0 &lt;= val &lt;= 10<sup>9</sup></code></li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">push</code>&nbsp;和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">pop</code>&nbsp;的操作数不大于<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">2 * 10<sup>4</sup></code>。</li><li>输入保证在调用&nbsp;<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">pop</code>&nbsp;之前堆栈中至少有一个元素。</li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/maximum-frequency-stack/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 895. 最大频率栈</a>。</strong></details>
+
+<h3 id="基本思路-7"><a href="#基本思路-7" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-7">基本思路</a></h3><p><strong>这种设计数据结构的问题，主要是要搞清楚问题的难点在哪里，然后结合各种基本数据结构的特性，高效实现题目要求的 API</strong>。</p>
+<p>那么，我们仔细思考一下 <code>push</code> 和 <code>pop</code> 方法，难点如下：</p>
+<p>1、每次 <code>pop</code> 时，必须要知道频率最高的元素是什么。</p>
+<p>2、如果频率最高的元素有多个，还得知道哪个是最近 <code>push</code> 进来的元素是哪个。</p>
+<p>为了实现上述难点，我们要做到以下几点：</p>
+<p>1、肯定要有一个变量 <code>maxFreq</code> 记录当前栈中最高的频率是多少。</p>
+<p>2、我们得知道一个频率 <code>freq</code> 对应的元素有哪些，且这些元素要有时间顺序。</p>
+<p>3、随着 <code>pop</code> 的调用，每个 <code>val</code> 对应的频率会变化，所以还得维持一个映射记录每个 <code>val</code> 对应的 <code>freq</code>。</p>
+<p>综上，我们可以先实现 <code>FreqStack</code> 所需的数据结构：</p>
+<pre class="line-numbers language-none"><code class="language-none">class FreqStack &#123;
+    &#x2F;&#x2F; 记录 FreqStack 中元素的最大频率
+    int maxFreq &#x3D; 0;
+    &#x2F;&#x2F; 记录 FreqStack 中每个 val 对应的出现频率，后文就称为 VF 表
+    HashMap&lt;Integer, Integer&gt; valToFreq &#x3D; new HashMap&lt;&gt;();
+    &#x2F;&#x2F; 记录频率 freq 对应的 val 列表，后文就称为 FV 表
+    HashMap&lt;Integer, Stack&lt;Integer&gt;&gt; freqToVals &#x3D; new HashMap&lt;&gt;();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其实这有点类似后文 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/frequency-interview/lfu/">手把手实现 LFU 算法</a>，注意 <code>freqToVals</code> 中 <code>val</code> 列表用一个栈实现，如果一个 <code>freq</code> 对应的元素有多个，根据栈的特点，可以首先取出最近添加的元素。</p>
+<p>具体看解法代码吧，要记住在 <code>push</code> 和 <code>pop</code> 方法中同时修改 <code>maxFreq</code>、<code>VF</code> 表、<code>FV</code> 表，否则容易出现 bug。</p>
+<p>算法执行过程如下 GIF 所示：</p>
+<p><img src="/2025/06/14/lian-xi-zhan-de-jing-dian-xi-ti/1.gif" alt="img"></p>
+<p><strong>详细题解</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/ds-design/">【练习】更多经典设计习题</a></li>
+<li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/">【练习】栈的经典习题</a></li>
+</ul>
+<h3 id="解法代码-7"><a href="#解法代码-7" class="headerlink" title="解法代码"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/stack/#%E8%A7%A3%E6%B3%95%E4%BB%A3%E7%A0%81-7">解法代码</a></h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">FreqStack</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 记录 FreqStack 中元素的最大频率</span>
+        self<span class="token punctuation">.</span>maxFreq <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token comment"># 记录 FreqStack 中每个 val 对应的出现频率，后文就称为 VF 表</span>
+        self<span class="token punctuation">.</span>valToFreq <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+        <span class="token comment"># 记录频率 freq 对应的 val 列表，后文就称为 FV 表</span>
+        self<span class="token punctuation">.</span>freqToVals <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token comment"># 修改 VF 表：val 对应的 freq 加一</span>
+        freq <span class="token operator">=</span> self<span class="token punctuation">.</span>valToFreq<span class="token punctuation">.</span>get<span class="token punctuation">(</span>val<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span>
+        self<span class="token punctuation">.</span>valToFreq<span class="token punctuation">[</span>val<span class="token punctuation">]</span> <span class="token operator">=</span> freq
+        <span class="token comment"># 修改 FV 表：在 freq 对应的列表加上 val</span>
+        <span class="token keyword">if</span> freq <span class="token keyword">not</span> <span class="token keyword">in</span> self<span class="token punctuation">.</span>freqToVals<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>freqToVals<span class="token punctuation">[</span>freq<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>freqToVals<span class="token punctuation">[</span>freq<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+        <span class="token comment"># 更新 maxFreq</span>
+        self<span class="token punctuation">.</span>maxFreq <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>maxFreq<span class="token punctuation">,</span> freq<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        <span class="token comment"># 修改 FV 表：pop 出一个 maxFreq 对应的元素 v</span>
+        vals <span class="token operator">=</span> self<span class="token punctuation">.</span>freqToVals<span class="token punctuation">[</span>self<span class="token punctuation">.</span>maxFreq<span class="token punctuation">]</span>
+        v <span class="token operator">=</span> vals<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment"># 修改 VF 表：v 对应的 freq 减一</span>
+        self<span class="token punctuation">.</span>valToFreq<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token comment"># 更新 maxFreq</span>
+        <span class="token keyword">if</span> <span class="token keyword">not</span> vals<span class="token punctuation">:</span>
+            <span class="token comment"># 如果 maxFreq 对应的元素空了</span>
+            self<span class="token punctuation">.</span>maxFreq <span class="token operator">-=</span> <span class="token number">1</span>
+        <span class="token keyword">return</span> v<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Mealsee</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://maelsee.github.io/2025/06/14/lian-xi-zhan-de-jing-dian-xi-ti/">https://maelsee.github.io/2025/06/14/lian-xi-zhan-de-jing-dian-xi-ti/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Mealsee</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%AE%9E%E8%B7%B5/">
+                                    <span class="chip bg-color">实践</span>
+                                </a>
+                            
+                                <a href="/tags/LeetCode/">
+                                    <span class="chip bg-color">LeetCode</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2025/06/14/lian-xi-gua-hao-lei-wen-ti-hui-zong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="【练习】括号类问题汇总">
+                        
+                        <span class="card-title">【练习】括号类问题汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-06-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/" class="post-category">
+                                    经典队列/栈算法
+                                </a>
+                            
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/Algorithm/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/Algorithm/Data-Structure/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AE%9E%E8%B7%B5/">
+                        <span class="chip bg-color">实践</span>
+                    </a>
+                    
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/06/14/dui-lie-shi-xian-zhan-yi-ji-zhan-shi-xian-dui-lie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="队列实现栈以及栈实现队列">
+                        
+                        <span class="card-title">队列实现栈以及栈实现队列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-06-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/" class="post-category">
+                                    经典队列/栈算法
+                                </a>
+                            
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/Algorithm/" class="post-category">
+                                    算法
+                                </a>
+                            
+                            <a href="/categories/%E7%BB%8F%E5%85%B8%E9%98%9F%E5%88%97-%E6%A0%88%E7%AE%97%E6%B3%95/Algorithm/Data-Structure/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%90%86%E8%AE%BA/">
+                        <span class="chip bg-color">理论</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">Mealsee</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
