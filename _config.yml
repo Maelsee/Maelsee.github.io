@@ -8,8 +8,9 @@ subtitle: '东隅已逝，桑榆非晚'
 description: '学习记录'
 keywords:
 author: Mealsee
-language: zh-CN
+language: zh-CN  # 设置网站默认语言为简体中文(中国地区)
 timezone: 'Asia/Shanghai'
+
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -111,7 +112,8 @@ theme: hexo-theme-matery
 deploy:
   type: git
   repo: git@github.com:Maelsee/Maelsee.github.io.git
-  branch: master
+  branch: main
+
 
 
 ## 搜索内容
