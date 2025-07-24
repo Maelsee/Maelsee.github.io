@@ -440,14 +440,14 @@ JSON 的运用非常">
 <p>比如说，如果给你一棵二叉树的前序遍历结果，你是否能够根据这个结果还原出这棵二叉树呢？</p>
 <p>答案是也许可以，也许不可以，具体要看你给的前序遍历结果是否包含空指针的信息。如果包含了空指针，那么就可以唯一确定一棵二叉树，否则就不行。</p>
 <p>举例来说，如果我给你这样一个不包含空指针的前序遍历结果 <code>[1,2,3,4,5]</code>，那么如下两棵二叉树都是满足这个前序遍历结果的：</p>
-<p><img src="/dup-preorder.jpg" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/dup-preorder.jpg" alt="img"></p>
 <p>所以给定不包含空指针信息的前序遍历结果，是不能还原出唯一的一棵二叉树的。</p>
 <p>但如果我的前序遍历结果包含空指针的信息，那么就能还原出唯一的一棵二叉树了。比如说用 <code>#</code> 表示空指针，上图左侧的二叉树的前序遍历结果就是 <code>[1,2,3,#,#,4,#,#,5,#,#]</code>，上图右侧的二叉树的前序遍历结果就是 <code>[1,2,#,3,#,#,4,5,#,#,#]</code>，它俩就区分开了。</p>
 <p>那么估计就有聪明的小伙伴说了：二叉树心法了。</p>
 <p>首先要夸一下这种举一反三的思维，但很不幸，正确答案是，即便你包含了空指针的信息，也只有前序和后序的遍历结果才能唯一还原二叉树，中序遍历结果做不到。</p>
 <p>本文后面会具体探讨这个问题，这里只简单说下原因：因为前序&#x2F;后序遍历的结果中，可以确定根节点的位置，而中序遍历的结果中，根节点的位置是无法确定的。</p>
 <p>更直观的，比如如下两棵二叉树显然拥有不同的结构，但它俩的中序遍历结果都是 <code>[#,1,#,1,#]</code>，无法区分：</p>
-<p><img src="/dup-inorder.jpg" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/dup-inorder.jpg" alt="img"></p>
 <p>说了这么多，总结下结论，<strong>当二叉树中节点的值不存在重复时</strong>：</p>
 <ol>
 <li><p>如果你的序列化结果中<strong>不包含空指针的信息</strong>，且你只给出<strong>一种</strong>遍历顺序，那么你无法还原出唯一的一棵二叉树。</p>
@@ -475,7 +475,7 @@ JSON 的运用非常">
 
 <p>我们可以用 <code>serialize</code> 方法将二叉树序列化成字符串，用 <code>deserialize</code> 方法将序列化的字符串反序列化成二叉树，至于以什么格式序列化和反序列化，这个完全由你决定。</p>
 <p>比如说输入如下这样一棵二叉树：</p>
-<p><img src="/1.jpg" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/1.jpg" alt="img"></p>
 <p><code>serialize</code> 方法也许会把它序列化成字符串 <code>2,1,#,6,#,#,3,#,#</code>，其中 <code>#</code> 表示 <code>null</code> 指针，那么把这个字符串再输入 <code>deserialize</code> 方法，依然可以还原出这棵二叉树。</p>
 <p>也就是说，这两个方法会成对儿使用，你只要保证他俩能够自洽就行了。</p>
 <p>想象一下，二叉树是一个二维平面内的结构，而序列化出来的字符串是一个线性的一维结构。<strong>所谓的序列化不过就是把结构化的数据「打平」，本质就是在考察二叉树的遍历方式</strong>。</p>
@@ -497,7 +497,7 @@ JSON 的运用非常">
     traverse<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>调用 <code>traverse</code> 函数之后，你是否可以立即想出这个 <code>res</code> 列表中元素的顺序是怎样的？比如如下二叉树（<code>#</code> 代表空指针 null），可以直观看出前序遍历做的事情：</p>
-<p><img src="/1.jpeg" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/1.jpeg" alt="img"></p>
 <p>那么 <code>res = [1,2,-1,4,-1,-1,3,-1,-1]</code>，这就是将二叉树「打平」到了一个列表中，其中 -1 代表 null。</p>
 <p>那么，将二叉树打平到一个字符串中也是完全一样的：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 代表分隔符的字符</span>
@@ -557,7 +557,7 @@ nodes &#x3D; data.split(&quot;,&quot;)<span aria-hidden="true" class="line-numbe
 <p>Tip</p>
 <p>前文 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/binary-tree-part2/">二叉树心法（构造篇）</a> 说过，至少要得到前、中、后序遍历中的两种互相配合才能还原二叉树。那是因为前文的遍历结果没有记录空指针的信息。这里的 <code>nodes</code> 列表包含了空指针的信息，所以只使用 <code>nodes</code> 列表就可以还原二叉树。</p>
 <p>根据我们刚才的分析，<code>nodes</code> 列表就是一棵打平的二叉树：</p>
-<p><img src="/1.jpeg" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/1.jpeg" alt="img"></p>
 <p>那么，反序列化过程也是一样，<strong>先确定根节点 <code>root</code>，然后遵循前序遍历的规则，递归生成左右子树即可</strong>：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Codec</span><span class="token punctuation">:</span>
     SEP <span class="token operator">=</span> <span class="token string">","</span>
@@ -610,7 +610,7 @@ nodes &#x3D; data.split(&quot;,&quot;)<span aria-hidden="true" class="line-numbe
     <span class="token comment"># ***********************</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>我们把对 <code>StringBuilder</code> 的拼接操作放到了后序遍历的位置，后序遍历导致结果的顺序发生变化：</p>
-<p><img src="/2.jpeg" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/2.jpeg" alt="img"></p>
 <p>关键点在于，如何实现后序遍历的 <code>deserialize</code> 方法呢？是不是也简单地将反序列化的关键代码无脑放到后序遍历的位置就行了呢：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 辅助函数，通过 nodes 列表构造二叉树</span>
 <span class="token keyword">def</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>nodes<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -631,7 +631,7 @@ nodes &#x3D; data.split(&quot;,&quot;)<span aria-hidden="true" class="line-numbe
 <p>显然上述代码是错误的，变量都没声明呢，就开始用了？生搬硬套肯定是行不通的，回想刚才我们前序遍历方法中的 <code>deserialize</code> 方法，第一件事情在做什么？</p>
 <p><strong><code>deserialize</code> 方法首先寻找 <code>root</code> 节点的值，然后递归计算左右子节点</strong>。那么我们这里也应该顺着这个基本思路走，后序遍历中，<code>root</code> 节点的值能不能找到？</p>
 <p>再看一眼刚才的图：</p>
-<p><img src="/2.jpeg" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/2.jpeg" alt="img"></p>
 <p>在后序遍历结果中，<code>root</code> 的值是列表的最后一个元素。我们应该从后往前取出列表元素，先用最后一个元素构造 <code>root</code>，然后递归调用生成 <code>root</code> 的左右子树。</p>
 <p><strong>注意，根据上图，从后往前在 <code>nodes</code> 列表中取元素，一定要先构造 <code>root.right</code> 子树，后构造 <code>root.left</code> 子树</strong>。</p>
 <p>看完整代码：</p>
@@ -774,7 +774,7 @@ nodes &#x3D; data.split(&quot;,&quot;)<span aria-hidden="true" class="line-numbe
         <span class="token keyword">return</span> Codec<span class="token punctuation">.</span>SEP<span class="token punctuation">.</span>join<span class="token punctuation">(</span>res<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>层级遍历序列化得出的结果如下图：</p>
-<p><img src="/3.jpeg" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/3.jpeg" alt="img"></p>
 <p>可以看到，每一个非空节点都会对应两个子节点，<strong>那么反序列化的思路也是用队列进行层级遍历，同时用索引 <code>index</code> 记录对应子节点的位置</strong>：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
 
@@ -1015,7 +1015,7 @@ nodes &#x3D; data.split(&quot;,&quot;)<span aria-hidden="true" class="line-numbe
 </tbody></table>
 <p>我们前文 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/bst-part1/">二叉搜索树心法（特性篇）</a> 介绍了 BST 的基本特性，还利用二叉搜索树「中序遍历有序」的特性来解决了几道题目，本文来实现 BST 的基础操作：判断 BST 的合法性、增、删、查。其中「删」和「判断合法性」略微复杂。</p>
 <p>BST 的基础操作主要依赖「左小右大」的特性，可以在二叉树中做类似二分搜索的操作，寻找一个元素的效率很高。比如下面这就是一棵合法的二叉树：</p>
-<p><img src="/0.png" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/0.png" alt="img"></p>
 <p>对于 BST 相关的问题，你可能会经常看到类似下面这样的代码逻辑：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">BST</span><span class="token punctuation">(</span>root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">,</span> target<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span><span class="token punctuation">:</span>
     <span class="token keyword">if</span> root<span class="token punctuation">.</span>val <span class="token operator">==</span> target<span class="token punctuation">:</span>
@@ -1165,18 +1165,18 @@ nodes &#x3D; data.split(&quot;,&quot;)<span aria-hidden="true" class="line-numbe
 
 <p>找到目标节点了，比方说是节点 <code>A</code>，如何删除这个节点，这是难点。因为删除节点的同时不能破坏 BST 的性质。有三种情况，用图片来说明。</p>
 <p><strong>情况 1</strong>：<code>A</code> 恰好是末端节点，两个子节点都为空，那么它可以直接被删除。</p>
-<p><img src="/bst_deletion_case_1.png" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/bst_deletion_case_1.png" alt="img"></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">if</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>left <span class="token operator">==</span> null <span class="token operator">&amp;</span><span class="token operator">&amp;</span> root<span class="token punctuation">.</span>right <span class="token operator">==</span> null<span class="token punctuation">)</span>
     <span class="token keyword">return</span> null<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><strong>情况 2</strong>：<code>A</code> 只有一个非空子节点，那么它要让这个孩子接替自己的位置。</p>
-<p><img src="/bst_deletion_case_2.png" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/bst_deletion_case_2.png" alt="img"></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">//</span> 排除了情况 <span class="token number">1</span> 之后
 <span class="token keyword">if</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>left <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> root<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
 <span class="token keyword">if</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>right <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> root<span class="token punctuation">.</span>left<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>情况 3</strong>：<code>A</code> 有两个子节点，麻烦了，为了不破坏 BST 的性质，<code>A</code> 必须找到左子树中最大的那个节点，或者右子树中最小的那个节点来接替自己。我们以第二种方式讲解。</p>
-<p><img src="/bst_deletion_case_3.png" alt="img"></p>
+<p><img src="/2025/07/24/er-cha-shu-xin-fa-xu-lie-hua-pian/bst_deletion_case_3.png" alt="img"></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">if</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>left <span class="token operator">!=</span> null <span class="token operator">&amp;</span><span class="token operator">&amp;</span> root<span class="token punctuation">.</span>right <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token operator">//</span> 找到右子树的最小节点
     TreeNode minNode <span class="token operator">=</span> getMin<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
