@@ -660,12 +660,12 @@ LeetCode
 <h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/bst-part4/#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90">题目分析</a></h2><p>题目会给你输入一棵二叉树，这棵二叉树的子树中可能包含<strong>二叉搜索树</strong>对吧，请你找到<strong>节点之和最大的</strong>那棵二叉搜索树，返回它的节点值之和。</p>
 <p>二叉搜索树（简写作 BST）的性质详见基础知识章节 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure-basic/binary-tree-basic/">二叉树基础</a>，简单说就是「左小右大」，对于每个节点，整棵左子树都比该节点的值小，整棵右子树都比该节点的值大。</p>
 <p>比如题目给了这个例子：</p>
-<p><img src="/2025/04/15/github-pei-zhi-ssh-key/" alt="img"></p>
+<p><img src="/1.png" alt="img"></p>
 <p>如果输入这棵二叉树，算法应该返回 20，也就是图中绿圈的那棵子树的节点值之和，因为它是一棵 BST，且节点之和最大。</p>
 <p>那有的读者可能会问，输入的是一棵普通二叉树，有没有可能其中不存在 BST？</p>
 <p>不会的，因为按照 BST 的定义，任何一个单独的节点肯定是 BST，也就是说，再不济，二叉树最下面的叶子节点肯定都是 BST。</p>
 <p>比如说如果输入下面这棵二叉树：</p>
-<p><img src="/2025/04/15/github-pei-zhi-ssh-key/" alt="img"></p>
+<p><img src="/2.png" alt="img"></p>
 <p>两个叶子节点 <code>1</code> 和 <code>2</code> 就是 BST，比较一下节点之和，算法应该返回 2。</p>
 <p>好了，到这里，题目应该解释地很清楚了，下面我们来分析一下这道题应该怎么做。</p>
 <h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/bst-part4/#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90">思路分析</a></h2><p>刚才说了，<strong>二叉树相关题目最核心的思路是明确当前节点需要做的事情是什么</strong>。</p>
