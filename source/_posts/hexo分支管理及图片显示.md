@@ -65,7 +65,7 @@ hexo generate -d
 在完成初始配置后，日常操作只需重复上述提交和部署步骤即可。在本地修改博客内容后，通过以下命令将改动推送到 GitHub：
 
 ```shell
-git add
+git add .
 
 git commit -m "更新博客"
 
