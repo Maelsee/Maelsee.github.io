@@ -1165,7 +1165,7 @@
 <p>这题的难度应该设置为困难，因为这题及要求你准确理解二叉树的前序后序遍历，还要熟悉前缀和技巧，把前缀和技巧用到二叉树上。</p>
 <p>你可以先看前文 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/prefix-sum/">前缀和技巧</a>，然后做一下 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subarray-sum-equals-k">560. 和为K的子数组</a>，应该能够理解这道题的思路了。</p>
 <p>你把二叉树看做是数组，利用前后序遍历来维护前缀和，看下图就能理解解法中几个关键变量的关系了：</p>
-<p><img src="/437.jpeg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/437.jpeg" alt="img"></p>
 <p><strong>详细题解</strong>：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-traverse-iii/">【练习】用「遍历」思维解题 III</a></li>
@@ -1363,7 +1363,7 @@ findElements.find(5); // return True
 
 <h3 id="基本思路-17"><a href="#基本思路-17" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-traverse-iii/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-4">基本思路</a></h3><p>如果你看过前文 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure-basic/binary-heap-basic/">二叉堆（优先级队列）原理及实现</a>，就知道这种完全二叉树可以通过索引来模拟左右指针以及父节点指针。</p>
 <p>具体来说，先假设全都是从左到右排列，没有之字形排列的这个条件：</p>
-<p><img src="/1104.png" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/1104.png" alt="img"></p>
 <p>如果我想求到达某一个 <code>label</code> 节点的路径，那么我一直对 <code>label</code> 除以 2 就行了（忽略余数）。</p>
 <p>你比如我想求到达 13 的路径，就是 13, 6, 3, 1，然后反转一下就行了。大致的代码逻辑如下：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> path <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1431,7 +1431,7 @@ findElements.find(5); // return True
 
 <h3 id="基本思路-18"><a href="#基本思路-18" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-traverse-iii/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-5">基本思路</a></h3><p>这道题的关键是要观察规律，根据游戏规则，对方先选一个节点之后，你的最优策略就是紧贴着对方的那个节点选择，也就是说你应该选择节点 <code>x</code> 的左右子节点或者父节点。</p>
 <p>做出以上三种选择，你可以占据二叉树的不同部分，如下图：</p>
-<p><img src="/1145.png" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/1145.png" alt="img"></p>
 <p>你如果想赢，必须占据超过 <code>n / 2</code> 的节点，也就是说，如果这三个蓝色区域中节点数最多的那个区域中的节点个数大于 <code>n / 2</code>，你能赢，否则你就输。</p>
 <p>所以本题转化为计算二叉树节点个数的简单问题，具体看代码逻辑。</p>
 <p><strong>详细题解</strong>：</p>
@@ -1622,9 +1622,9 @@ findElements.find(5); // return True
 
 <h3 id="基本思路-22"><a href="#基本思路-22" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-divide-i/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF">基本思路</a></h3><p><strong>构造二叉树，第一件事一定是找根节点，然后想办法构造左右子树</strong>。</p>
 <p>二叉树的前序和中序遍历结果的特点如下：</p>
-<p><img src="/1.jpeg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/1.jpeg" alt="img"></p>
 <p>前序遍历结果第一个就是根节点的值，然后再根据中序遍历结果确定左右子树的节点。</p>
-<p><img src="/4.jpeg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/4.jpeg" alt="img"></p>
 <p>结合这个图看代码辅助理解。</p>
 <p><strong>详细题解</strong>：</p>
 <ul>
@@ -1684,9 +1684,9 @@ findElements.find(5); // return True
 
 <h3 id="基本思路-23"><a href="#基本思路-23" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-divide-i/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-1">基本思路</a></h3><p><strong>构造二叉树，第一件事一定是找根节点，然后想办法构造左右子树</strong>。</p>
 <p>二叉树的后序和中序遍历结果的特点如下：</p>
-<p><img src="/5.jpeg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/5.jpeg" alt="img"></p>
 <p>后序遍历结果最后一个就是根节点的值，然后再根据中序遍历结果确定左右子树的节点。</p>
-<p><img src="/6.jpeg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/6.jpeg" alt="img"></p>
 <p>结合这个图看代码辅助理解。</p>
 <p><strong>详细题解</strong>：</p>
 <ul>
@@ -1747,12 +1747,12 @@ findElements.find(5); // return True
 <p>前两道题，可以通过前序或者后序遍历结果找到根节点，然后根据中序遍历结果确定左右子树。</p>
 <p>这道题，你可以确定根节点，但是无法确切的知道左右子树有哪些节点。</p>
 <p>举个例子，下面这两棵树结构不同，但是它们的前序遍历和后序遍历结果是相同的：</p>
-<p><img src="/7.png" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/7.png" alt="img"></p>
 <p>不过话说回来，用后序遍历和前序遍历结果还原二叉树，解法逻辑上和前两道题差别不大，也是通过控制左右子树的索引来构建：</p>
 <p><strong>1、首先把前序遍历结果的第一个元素或者后序遍历结果的最后一个元素确定为根节点的值</strong>。</p>
 <p><strong>2、然后把前序遍历结果的第二个元素作为左子树的根节点的值</strong>。</p>
 <p><strong>3、在后序遍历结果中寻找左子树根节点的值，从而确定了左子树的索引边界，进而确定右子树的索引边界，递归构造左右子树即可</strong>。</p>
-<p><img src="/8.jpeg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/8.jpeg" alt="img"></p>
 <p><strong>详细题解</strong>：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/binary-tree-part2/">二叉树心法（构造篇）</a></li>
@@ -1817,7 +1817,7 @@ findElements.find(5); // return True
 <h3 id="基本思路-25"><a href="#基本思路-25" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-divide-i/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-3">基本思路</a></h3><p>首先，如果看过前文 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/serialize-and-deserialize-binary-tree/">手把手带你刷二叉树（序列化篇）</a> 理解了前序遍历序列化和反序列化的原理，肯定可以通过改造反序列化函数 <code>deserialize</code> 来判断序列化的合法性。</p>
 <p>另外还有一种更巧妙的解法，就是利用二叉树节点和边的关系。</p>
 <p>每个非空的二叉树节点都会产生两条边，并消耗一条边；而每个空节点只会消耗一条边：</p>
-<p><img src="/331.jpeg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/331.jpeg" alt="img"></p>
 <p><strong>详细题解</strong>：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-divide-i/">【练习】用「分解问题」思维解题 I</a></li>
@@ -2122,7 +2122,7 @@ findElements.find(5); // return True
 <h3 id="基本思路-32"><a href="#基本思路-32" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-divide-ii/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-3">基本思路</a></h3><p>前文 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/essential-technique/binary-tree-summary/">手把手刷二叉树总结篇</a> 说过二叉树的递归分为「遍历」和「分解问题」两种思维模式，这道题需要用到「分解问题」的思维。</p>
 <p>这题需要巧用二叉树的后序遍历，可以先去做一下 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/diameter-of-binary-tree">543. 二叉树的直径</a> 和 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-leaves-of-binary-tree">366. 寻找二叉树的叶子节点</a>。</p>
 <p><code>oneSideMax</code> 函数和上述几道题中都用到的 <code>maxDepth</code> 函数非常类似，只不过 <code>maxDepth</code> 计算最大深度，<code>oneSideMax</code> 计算「单边」最大路径和：</p>
-<p><img src="/124.png" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/124.png" alt="img"></p>
 <p>然后在后序遍历的时候顺便计算题目要求的最大路径和。</p>
 <p><strong>详细题解</strong>：</p>
 <ul>
@@ -3600,7 +3600,7 @@ Math.abs(left) + Math.abs(right) + (node.val - 1);<span aria-hidden="true" class
 </pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>树中节点的数目范围是<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">[1, 3000]</code></li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">-100 &lt;= Node.val &lt;= 100</code></li></ul></div></div></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/maximum-width-of-binary-tree/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 662. 二叉树最大宽度</a>。</strong></details>
 
 <h3 id="基本思路-60"><a href="#基本思路-60" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-level-i/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-4">基本思路</a></h3><p><strong>这道题的解题关键是要给二叉树节点按行进行编号</strong>，然后你就可以通过每一行的最左侧节点和最右侧节点的编号推算出这一行的宽度，进而算出最大宽度：</p>
-<p><img src="/662.png" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/662.png" alt="img"></p>
 <p>而且，这样编号还可以通过父节点的编号计算得出左右子节点的编号：</p>
 <p>假设父节点的编号是 <code>x</code>，左子节点就是 <code>2 * x</code>，右子节点就是 <code>2 * x + 1</code>。</p>
 <p>这个特性常见于完全二叉树的题目当中，你可以去看看前文 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure-basic/binary-heap-basic/">图文详解二叉堆，实现优先级队列</a> 或者去做一下 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-in-zigzag-labelled-binary-tree">1104. 二叉树寻路</a> 这道题。</p>
@@ -3807,7 +3807,7 @@ Math.abs(left) + Math.abs(right) + (node.val - 1);<span aria-hidden="true" class
 </pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>树中节点数目在范围<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">[1, 100]</code><span>&nbsp;</span>内</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">1 &lt;= Node.val &lt;= 1000</code></li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/check-completeness-of-a-binary-tree/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 958. 二叉树的完全性检验</a>。</strong></details>
 
 <h3 id="基本思路-63"><a href="#基本思路-63" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/binary-tree-level-i/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-7">基本思路</a></h3><p>这题的关键是对完全二叉树特性的理解，<strong>如果按照 BFS 层序遍历的方式遍历完全二叉树，队列最后留下的应该都是空指针</strong>：</p>
-<p><img src="/958.jpeg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/958.jpeg" alt="img"></p>
 <p>所以可以用 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal">102. 二叉树的层序遍历</a> 给出的层序遍历框架解决这题。</p>
 <p><strong>详细题解</strong>：</p>
 <ul>
@@ -4167,7 +4167,7 @@ Math.abs(left) + Math.abs(right) + (node.val - 1);<span aria-hidden="true" class
 <p>得益于二叉搜索树左小右大的特性，一个重要性质是：二叉搜索树的中序遍历结果有序。</p>
 <p>题目说有两个节点的值反了，也就是说中序遍历结果不再是有序的，有两个元素的位置反了。</p>
 <p>那么我们在中序遍历的时候找到破坏有序性的这两个元素，交换它们即可。</p>
-<p><img src="/1.jpg" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/1.jpg" alt="img"></p>
 <p><strong>详细题解</strong>：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/bst1/">【练习】二叉搜索树经典例题 I</a></li>
@@ -4259,9 +4259,9 @@ Math.abs(left) + Math.abs(right) + (node.val - 1);<span aria-hidden="true" class
 <p>这题很有意思，按照这棵二叉树的特性，根节点无疑是最小的那个元素，但问题是第二小的那个元素在哪里呢？</p>
 <p>如果根节点的左右子节点的值不同，根节点的值就是较小的那个节点（假设是左子节点）的值，那么较大的那个节点（右子节点）的值是不是就一定是第二小的那个元素？</p>
 <p>不一定，第二小的值也可能在左子树中，这个节点是左子树中第二小的节点：</p>
-<p><img src="/671_1.png" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/671_1.png" alt="img"></p>
 <p>类似的道理，如果根节点的左右子节点相同，那么需要把左右子树的第二小元素计算出来，比较其中较小的元素，作为整棵树的第二小元素：</p>
-<p><img src="/671_2.png" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/671_2.png" alt="img"></p>
 <p>如何计算子树中的第二小元素？函数 <code>findSecondMinimumValue</code> 就是干这个的，递归调用子树即可算出来。</p>
 <p><strong>详细题解</strong>：</p>
 <ul>
@@ -4706,7 +4706,7 @@ Math.abs(left) + Math.abs(right) + (node.val - 1);<span aria-hidden="true" class
 
 <p><strong style="font-weight: 600;">解释</strong><br>BSTIterator bSTIterator &#x3D; new BSTIterator([7, 3, 15, null, null, 9, 20]);<br>bSTIterator.next();    &#x2F;&#x2F; 返回 3<br>bSTIterator.next();    &#x2F;&#x2F; 返回 7<br>bSTIterator.hasNext(); &#x2F;&#x2F; 返回 True<br>bSTIterator.next();    &#x2F;&#x2F; 返回 9<br>bSTIterator.hasNext(); &#x2F;&#x2F; 返回 True<br>bSTIterator.next();    &#x2F;&#x2F; 返回 15<br>bSTIterator.hasNext(); &#x2F;&#x2F; 返回 True<br>bSTIterator.next();    &#x2F;&#x2F; 返回 20<br>bSTIterator.hasNext(); &#x2F;&#x2F; 返回 False<br></pre><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">提示：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>树中节点的数目在范围<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">[1, 10<sup>5</sup>]</code><span>&nbsp;</span>内</li><li><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">0 &lt;= Node.val &lt;= 10<sup>6</sup></code></li><li>最多调用<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">10<sup>5</sup></code><span>&nbsp;</span>次<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">hasNext</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">next</code><span>&nbsp;</span>操作</li></ul><p style="line-height: 1.6; overflow-wrap: break-word;"><strong style="font-weight: 600;">进阶：</strong></p><ul style="line-height: 1.6; overflow-wrap: break-word; padding-inline-start: 1.2em;"><li>你可以设计一个满足下述条件的解决方案吗？<code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">next()</code><span>&nbsp;</span>和<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">hasNext()</code><span>&nbsp;</span>操作均摊时间复杂度为<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">O(1)</code><span>&nbsp;</span>，并使用<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">O(h)</code><span>&nbsp;</span>内存。其中<span>&nbsp;</span><code style="font-family: ui-monospace, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; margin: 0px; padding: 3px 6px; border-radius: 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(142, 150, 170, 0.14); font-size: 0.875em; overflow-wrap: break-word; transition: background-color 0.3s, color 0.3s;">h</code><span>&nbsp;</span>是树的高度。</li></ul></div><strong style="font-weight: 600; font-size: small;">题目来源：<a href="https://leetcode.cn/problems/binary-search-tree-iterator/" class="" target="_blank" style="color: rgb(7, 86, 171); font-weight: 500; text-decoration: none; overflow-wrap: break-word;">力扣 173. 二叉搜索树迭代器</a>。</strong></details></p>
 <h3 id="基本思路-81"><a href="#基本思路-81" class="headerlink" title="基本思路"></a><a target="_blank" rel="noopener" href="https://labuladong.online/algo/problem-set/bst2/#%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-4">基本思路</a></h3><p>利用栈模拟递归对 BST 进行中序遍历可以认为是一种套路题型，你记住就好了，关键在于理解 <code>pushLeftBranch</code> 函数，深刻理解二叉树递归遍历的过程：</p>
-<p><img src="/1.gif" alt="img"></p>
+<p><img src="/2025/08/03/er-cha-shu-suan-fa-xi-ti/1.gif" alt="img"></p>
 <p>另外，我还总结了一套二叉树各种遍历顺序通用的递归转迭代代码框架，详见 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure/iterative-traversal-binary-tree/">二叉树通用迭代框架</a>。</p>
 <p><strong>详细题解</strong>：</p>
 <ul>
