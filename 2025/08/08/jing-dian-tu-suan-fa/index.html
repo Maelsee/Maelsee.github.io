@@ -458,6 +458,7 @@
 <p>首先，基于 <a target="_blank" rel="noopener" href="https://labuladong.online/algo/data-structure-basic/graph-traverse-basic/">图结构的遍历</a> 写出图的 DFS 遍历框架：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 遍历图的所有节点</span>
 <span class="token keyword">def</span> <span class="token function">traverse</span><span class="token punctuation">(</span>graph<span class="token punctuation">,</span> s<span class="token punctuation">,</span> visited<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    
     <span class="token comment"># base case</span>
     <span class="token keyword">if</span> s <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token keyword">or</span> s <span class="token operator">>=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>graph<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword">return</span>
@@ -469,7 +470,7 @@
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"visit"</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span>
     <span class="token keyword">for</span> e <span class="token keyword">in</span> graph<span class="token punctuation">.</span>neighbors<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
         traverse<span class="token punctuation">(</span>graph<span class="token punctuation">,</span> e<span class="token punctuation">.</span>to<span class="token punctuation">,</span> visited<span class="token punctuation">)</span>
-    <span class="token comment"># 后序位置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token comment"># 后序位置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>因为图中可能存在环，所以用 <code>visited</code> 数组防止走回头路。</p>
 <p>这里可以看到我习惯把 return 语句都放在函数开头，因为一般 return 语句都是 base case，集中放在一起可以让算法结构更清晰。</p>
@@ -1400,18 +1401,17 @@ end<sub>1</sub> = 1 == 1 = start<sub>2</sub>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2025/08/08/jing-dian-tu-suan-fa/">
+                <a href="/2025/10/27/frp-shi-xian-nei-wang-chuan-tou/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="经典图算法">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="frp实现内网穿透">
                         
-                        <span class="card-title">经典图算法</span>
+                        <span class="card-title">frp实现内网穿透</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1421,39 +1421,26 @@ end<sub>1</sub> = 1 == 1 = start<sub>2</sub>
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-08-08
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-10-27
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9B%BE%E7%AE%97%E6%B3%95/" class="post-category">
-                                    图算法
-                                </a>
-                            
-                            <a href="/categories/%E5%9B%BE%E7%AE%97%E6%B3%95/Algorithm/" class="post-category">
-                                    算法
-                                </a>
-                            
-                            <a href="/categories/%E5%9B%BE%E7%AE%97%E6%B3%95/Algorithm/Data-Structure/" class="post-category">
-                                    数据结构
+                            <a href="/categories/%E9%85%8D%E7%BD%AE/" class="post-category">
+                                    配置
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%9E%E8%B7%B5/">
-                        <span class="chip bg-color">实践</span>
-                    </a>
-                    
-                    <a href="/tags/LeetCode/">
-                        <span class="chip bg-color">LeetCode</span>
+                    <a href="/tags/frp/">
+                        <span class="chip bg-color">frp</span>
                     </a>
                     
                 </div>
