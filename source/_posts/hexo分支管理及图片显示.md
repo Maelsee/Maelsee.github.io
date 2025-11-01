@@ -47,7 +47,7 @@ branch: master
 每次修改或新增博文后，依次执行以下命令将博客源码提交到 *`hexo`* 分支：
 
 ```shell
-git add
+git add .
 
 git commit -m "更新博客"
 

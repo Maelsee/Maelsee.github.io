@@ -110,3 +110,93 @@ typora-root-url: ../../
 - 参考：[Hexo + GitHub Actions 自动部署教程](https://hexo.io/zh-cn/docs/github-pages#%E4%BD%BF%E7%94%A8-GitHub-Actions-%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2)
 
 ---
+
+## ✅ Hexo 常用命令
+
+下面列出在本项目中常用的 Hexo 命令，包含说明与示例组合命令（适用于 Windows PowerShell）。在执行命令前，建议先在项目根目录运行 `npm install` 确保依赖已安装。
+
+- 安装依赖（首次或依赖变更后）：
+
+```powershell
+npm install
+```
+
+- 本地预览（启动 Hexo 本地服务器，默认监听 http://localhost:4000）：
+
+```powershell
+# 在开发时使用，实时监听并在文件变更时自动重载
+npx hexo clean; npx hexo server
+# 或者（更明确）
+# npx hexo clean; npx hexo server --draft --future
+```
+
+- 仅生成静态文件到 `public/`（不启动服务器）：
+
+```powershell
+npx hexo clean; npx hexo generate
+# 简写：npx hexo g
+```
+
+- 部署到远程（使用 hexo-deployer-git，根据 _config.yml 的 deploy 配置进行推送）：
+
+```powershell
+npx hexo deploy
+# 简写：npx hexo d
+```
+
+- 本地调试生成并部署（常用组合）：
+
+```powershell
+# 清理旧生成文件，生成最新静态文件并推送
+npx hexo clean; npx hexo generate; npx hexo deploy
+```
+
+- 新建文章 / 草稿：
+
+```powershell
+# 新建正式文章（会放入 source/_posts/）
+npx hexo new "你的文章标题"
+# 新建草稿（放入 source/_drafts/）
+npx hexo new draft "草稿标题"
+```
+
+- 清理缓存与生成内容（遇到奇怪的生成/资源问题时执行）：
+
+```powershell
+npx hexo clean
+```
+
+- 列出可用命令与帮助：
+
+```powershell
+npx hexo help
+```
+
+### 常见工作流示例
+
+1) 本地写作到发布（推荐）
+
+```powershell
+# 1. 新建文章并编辑
+npx hexo new "my-post"
+# 编辑完成后
+npx hexo clean; npx hexo generate
+# 检查本地预览
+npx hexo server
+# 发布到 GitHub Pages
+npx hexo deploy
+```
+
+2) 使用 GitHub Actions 自动部署（仓库已配置）
+
+- 本地只需推送到仓库主分支（或仓库的 action 触发分支），CI 会自动执行 `npm ci`、`npx hexo generate` 并将 `public/` 部署到 GitHub Pages。
+
+### 小贴士
+
+- 使用 `npx` 可避免全局安装 hexo；若你更常用全局安装，可改用 `hexo` 替换 `npx hexo`。
+- 遇到依赖问题，先删除 `node_modules` 和 `package-lock.json`，然后重新 `npm install`。
+- 如果图片在本地可见但部署后缺失，检查 `post_asset_folder` 是否已开启，以及图片路径是否正确。
+
+---
+
+*已将 Hexo 常用命令加入本 README，便于本地开发与自动部署。*
